@@ -1,0 +1,25 @@
+# Local IDE and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Temporary downloads and generated artifacts
+node_modules/
+dist/
+build/
+coverage/
+.tmp/
+*.log
+*.zip
+
+# Secrets (not normally needed for pure HTML/CSS)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Keep source HTML, CSS, JS, images, SVG, and project screenshots tracked.
