@@ -15,6 +15,10 @@ coverage/
 *.log
 *.zip
 
+# Python test runner cache (workshop's standard-library tests)
+__pycache__/
+*.py[cod]
+
 # Secrets (not normally needed for pure HTML/CSS)
 .env
 .env.*
