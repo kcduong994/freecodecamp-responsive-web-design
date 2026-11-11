@@ -1,9 +1,9 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** **In progress** — Chapter 01 documented after Workshop 01 (2026-11-10).  
+> **Status:** **In progress** — Workshop 01 (2026-11-10) and Lab 01 (2026-11-11) documented.  
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.  
 > **Final review:** **Not yet completed**; this document will be expanded and critically revised after the remaining practical curriculum.  
-> **Evidence checkpoint:** [`83af1c7`](https://github.com/kcduong994/freecodecamp-responsive-web-design/commit/83af1c7d02ab4c835c1ce78d1feac82ce4150bdb) on `main`.
+> **Evidence:** Workshop 01 committed at [`83af1c7`](https://github.com/kcduong994/freecodecamp-responsive-web-design/commit/83af1c7d02ab4c835c1ce78d1feac82ce4150bdb); Lab 01 passed on freeCodeCamp in learner screenshot (2026-11-11).
 
 ## Why this document exists / Mục đích
 
@@ -31,12 +31,13 @@ Every chapter will answer:
 | Chapter | Domain | Status | Evidence |
 | --- | --- | --- | --- |
 | 01 | HTML structure and heading hierarchy | **Learned + explained** | [Workshop 01](./workshops/build-a-curriculum-outline/README.md), **11/11 steps**, **8/8 local tests** |
+| 01B | HTML debugging and error recovery | **Learned + explained** | [Lab 01](./labs/debug-camperbots-profile-page/README.md), **freeCodeCamp 100%**; local tests packaged for verification |
 | 02 | HTML attributes and document boilerplate | **Planned** | Some standalone scaffolding was added to Workshop 01's archived file; this does not constitute completion of the theory lessons |
 | 03 | Links, images, lists, semantic sections, tables and forms | **Planned** | No completed repository exercises |
 | 04 | CSS syntax, selectors, cascade, inheritance, typography, color and box model | **Planned** | No completed repository exercises |
 | 05 | Layout: dimensions, positioning, Flexbox, Grid and responsive design | **Planned** | No completed repository exercises |
 | 06 | Pseudo-classes/elements, custom properties and CSS effects | **Planned** | No completed repository exercises |
-| 07 | Debugging, accessibility, browser tools and project verification | **Develop gradually** | Only basic inspection/checking in Workshop 01 so far |
+| 07 | Debugging, accessibility, browser tools and project verification | **Develop gradually** | Lab 01 introduces HTML syntax debugging; full accessibility and browser audits planned |
 
 ---
 
@@ -160,6 +161,62 @@ These questions synthesize the topic rather than repeating the [workshop's ten q
 4. **Create (extension):** Design an HTML-only outline of a coastal engineering course with a title, subject areas and explanatory paragraphs. Justify every heading level.
 
 **Personal mastery checklist (not independently graded):** I can distinguish a tag from an element; explain `h1`–`h3` and `p`; distinguish HTML/CSS/JavaScript responsibilities; explain browser default styling; and articulate the limits of automated testing.
+
+---
+
+## Lab 01 — HTML debugging and error recovery
+
+**Primary lab:** [Debug Camperbot's Profile Page](./labs/debug-camperbots-profile-page/) — freeCodeCamp **100%** in the learner's final screenshot dated **2026-11-11**. The archived Python suite is a separate check; do not report a Windows result until that command has been run.
+
+### 1. What did we learn?
+
+**Learned:** it is not enough to create visible text. HTML elements must use the correct tag names and closing syntax. The original profile used `heading2` where `h2` was required, `pp` where `p` was required (twice), and an incorrect `<h3/>` ending instead of `</h3>`. The completed document has `h1 → h2 → p → h3 → p` in that order.
+
+### 2. What does the browser receive?
+
+**Learned:** HTML markup, including any mistyped tag names and misplaced slashes. **Packaging extension:** the archived `index.html` adds the HTML5 document shell to make it directly browser-openable; the freeCodeCamp exercise itself showed a short fragment.
+
+### 3. What does the browser do?
+
+**Explained:** the HTML parser constructs a DOM tree. An unfamiliar tag named `heading2` does not automatically become an `h2`, and `<h3/>` does not close an existing `h3` in ordinary HTML. Browser error recovery can still display the page but with unintended element nesting and default styling.
+
+```text
+HTML source with an error
+      ↓
+HTML parser / error recovery
+      ↓
+DOM tree (possibly unintended)
+      ↓
+Browser default styles / preview
+```
+
+Thus **renders successfully** does not necessarily mean **structurally or semantically correct**.
+
+### 4. What does the user experience?
+
+The corrected preview visibly separates the `About` heading and introduction, then the `Background and Interests` heading and its paragraph. That hierarchy communicates the page's intent. Visual appearance and semantic correctness are related but separate properties.
+
+### 5. What can fail?
+
+| Error type | Example | Check |
+| --- | --- | --- |
+| Incorrect element name | `<heading2>` | Compare with standard `<h2>` |
+| Plausible mistyped paragraph | `<pp>` | Use `<p>` for paragraphs |
+| Incorrect closing tag | `<h3/>` | Replace with `</h3>` |
+| Misleading visual success | Text still displays | Inspect source, DOM and test criteria |
+| Overstated verification | “100% means accessible” | Distinguish challenge tests from browser/a11y audits |
+
+### 6. How do we verify it?
+
+**Official evidence:** the learner's final freeCodeCamp screenshot reports 100% and “Congratulations. Your code passes.” **Local check supplied:** a dependency-free Python suite for structural correctness and the exact final visible strings; its success in this package is reproducible but separate from the official check. **Not verified by those checks:** cross-browser compatibility, keyboard accessibility and screen-reader behavior.
+
+```powershell
+py -m unittest discover -s labs/debug-camperbots-profile-page/tests -p "test_*.py" -v
+```
+
+**Connection to Workshop 01:** the workshop introduced how to construct standard heading/paragraph elements; Lab 01 tested the ability to recognize *incorrect* versions of those elements. Both lessons contribute to the distinction among HTML syntax, semantics, actual DOM and rendered preview.
+
+The lab's [REVIEW.md](./labs/debug-camperbots-profile-page/REVIEW.md) contains the UK IPA vocabulary and ten unanswered questions ranging from recall through independent design.
 
 ---
 

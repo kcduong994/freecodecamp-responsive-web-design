@@ -3,8 +3,8 @@
 > **Status:** In progress  
 > **Curriculum:** [Responsive Web Design Certification — freeCodeCamp V9](https://www.freecodecamp.org/learn/responsive-web-design-v9/)  
 > **Current track:** HTML → Basic HTML  
-> **Latest completed activity:** Workshop 01 — Build a Curriculum Outline (2026-11-10)  
-> **Last evidence checkpoint:** [`83af1c7`](https://github.com/kcduong994/freecodecamp-responsive-web-design/commit/83af1c7d02ab4c835c1ce78d1feac82ce4150bdb) on `main` (verified 2026-11-10)
+> **Latest completed activity:** Lab 01 — Debug Camperbot's Profile Page (2026-11-11)  
+> **Evidence:** Workshop 01 (2026-11-10) and Lab 01 (2026-11-11) completed in freeCodeCamp; local Lab 01 source tests archived for verification.
 
 ## Purpose
 
@@ -32,12 +32,12 @@ Theory → Workshop / Lab → Review → Quiz / checks
 
 ## Learning progress
 
-**Verified snapshot: 10 November 2026.** Counts below refer to repository documentation and the supplied freeCodeCamp completion evidence, not an independently queried freeCodeCamp account.
+**Verified snapshot: 11 November 2026.** Counts below refer to repository documentation and the supplied freeCodeCamp completion evidence, not an independently queried freeCodeCamp account.
 
 | Activity | Verified progress | Evidence / next action |
 | --- | ---: | --- |
 | Workshops | **1 completed** | [Build a Curriculum Outline](./workshops/build-a-curriculum-outline/README.md): **11/11 steps, 100%**, freeCodeCamp screenshots |
-| Labs | **0 documented as complete** | Next: *Debug Camperbot's Profile Page* (listed next in the curriculum screenshot) |
+| Labs | **1 completed** | [Debug Camperbot's Profile Page](./labs/debug-camperbots-profile-page/README.md): **100%**, freeCodeCamp screenshot (2026-11-11) |
 | Certification projects | **0 / 5** | Not started |
 | Cumulative conceptual review | **In progress** | [RWD_REVIEW.md](./RWD_REVIEW.md): Chapter 01 completed; later chapters planned |
 | Final curriculum review | Not completed | Consolidate and revisit all concepts after practical work |
@@ -48,9 +48,10 @@ Theory → Workshop / Lab → Review → Quiz / checks
 
 | # | Track / activity | Source | Technical scope | Verified result |
 | ---: | --- | --- | --- | --- |
-| 01 | HTML · Workshop · **Build a Curriculum Outline** | [Open workshop](./workshops/build-a-curriculum-outline/) | HTML element anatomy; `<h1>`, `<h2>`, `<h3>`, `<p>`; heading hierarchy; HTML/CSS/JavaScript responsibilities | **11/11 freeCodeCamp steps passed**; **8/8 local Python tests passed** (Windows terminal screenshot, 2026-11-10); committed and pushed to `main` |
+| 01 | HTML · Workshop · **Build a Curriculum Outline** | [Open workshop](./workshops/build-a-curriculum-outline/) | HTML element anatomy; headings, paragraphs; semantic hierarchy | **11/11 freeCodeCamp steps**, **8/8 Windows local tests** (2026-11-10); pushed to `main` |
+| 02 | HTML · Lab · **Debug Camperbot's Profile Page** | [Open lab](./labs/debug-camperbots-profile-page/) | Correct unknown elements, mistyped paragraph tags and closing-tag syntax | **freeCodeCamp 100%** (2026-11-11 screenshot); new local tests packaged for verification |
 
-**Evidence boundaries:** the freeCodeCamp completion screenshot confirms the workshop exercises, and the local `unittest` result confirms the eight checks implemented in the repository. Neither is a substitute for full HTML validation, browser compatibility testing, an accessibility audit, or certification.
+**Evidence boundaries:** freeCodeCamp screenshots confirm Workshop 01 (11 steps) and Lab 01 (100%). The Windows `unittest` screenshot confirms Workshop 01's eight checks. Lab 01's eight additional tests are included in the source package and must be run separately. None of these results substitutes for full accessibility, browser compatibility or certification testing.
 
 ## Workshop 01 — learning record
 
@@ -61,6 +62,16 @@ Theory → Workshop / Lab → Review → Quiz / checks
 - [Cumulative review: Chapter 01](./RWD_REVIEW.md#chapter-01--html-structure-and-heading-hierarchy-workshop-01)
 
 The freeCodeCamp editor used an HTML **fragment**. The archived file adds standard HTML5 document scaffolding (`DOCTYPE`, `html`, `head`, metadata, `body`) so it opens locally. These additions are **packaging choices**, not claims that these topics were taught in Workshop 01. The archived visible text retains the capitalization shown in the completed lesson screenshot; professional spelling is **JavaScript**.
+
+## Lab 01 — learning record
+
+- [Source: `index.html`](./labs/debug-camperbots-profile-page/index.html)
+- [Lab README: error fixes and verification](./labs/debug-camperbots-profile-page/README.md)
+- [Lab REVIEW: concepts, IPA and independent questions](./labs/debug-camperbots-profile-page/REVIEW.md)
+- [Local tests: `tests/test_html.py`](./labs/debug-camperbots-profile-page/tests/test_html.py)
+- [Cumulative review: Lab 01 section](./RWD_REVIEW.md#lab-01--html-debugging-and-error-recovery)
+
+The archived lab uses an HTML5 wrapper for standalone viewing; the freeCodeCamp editor itself contained only a short HTML fragment. Its completed text and element order match the screenshot.
 
 ## Repository structure
 
@@ -78,12 +89,18 @@ freecodecamp-responsive-web-design/
 │       └── tests/
 │           └── test_html.py
 ├── labs/
-│   └── .gitkeep
+│   ├── .gitkeep
+│   └── debug-camperbots-profile-page/
+│       ├── index.html
+│       ├── README.md
+│       ├── REVIEW.md
+│       └── tests/
+│           └── test_html.py
 └── certification-projects/
     └── .gitkeep
 ```
 
-The `.gitkeep` files simply keep currently empty directories in Git; they do not represent finished exercises.
+The `.gitkeep` files are placeholders retained from initial setup; they are not evidence of completed work.
 
 ## Local verification
 
@@ -93,23 +110,29 @@ From the repository root, with Python 3 installed:
 py -m unittest discover -s workshops/build-a-curriculum-outline/tests -p "test_*.py" -v
 ```
 
-On systems where `py` is unavailable, use `python` instead. Successful execution reports **8 tests** and `OK`. The Windows terminal screenshots supplied on 2026-11-10 show this result locally.
+To run Lab 01's independent checks:
 
-To inspect the page, open [the HTML file](./workshops/build-a-curriculum-outline/index.html) in a browser. No Node.js, package manager, local HTTP server or external dependency is required for this workshop. The automated tests are intentionally limited to the archived HTML source and do not measure rendering or accessibility.
+```powershell
+py -m unittest discover -s labs/debug-camperbots-profile-page/tests -p "test_*.py" -v
+```
+
+Use `python` instead of `py` when appropriate. **Each suite contains eight tests.** The Windows screenshots supplied on 2026-11-10 verify Workshop 01; run the new Lab 01 suite on your machine before claiming its Windows verification.
+
+Open each activity's `index.html` directly in a browser. No Node.js or external dependency is required. Both Python suites check source markup; they do **not** measure rendering, keyboard operation or accessibility.
 
 ## Subject roadmap (not a completion claim)
 
 | Area | Topics to study | Status |
 | --- | --- | --- |
-| HTML foundations | Elements, tags, headings, paragraphs, document structure | **Workshop 01: introductory coverage** |
+| HTML foundations | Elements, tags, headings, paragraphs, document structure and basic syntax debugging | **Workshop 01 + Lab 01: introductory coverage** |
 | HTML content and accessibility | Attributes, links, images, lists, tables, forms, semantic elements | Planned |
 | CSS foundations | Selectors, cascade, specificity, inheritance, colors, typography, box model | Planned |
 | CSS layouts | Units, sizing, positioning, Flexbox, Grid, responsive layouts and media queries | Planned |
 | CSS effects | Pseudo-classes, pseudo-elements, variables, transforms, transitions and animations | Planned |
-| Project quality | Debugging, accessibility checks, browser developer tools and validation | Develop incrementally |
+| Project quality | Debugging, accessibility checks, browser developer tools and validation | **Lab 01: syntax debugging introduced**; broader quality checks planned |
 | Certification | Five required projects, review, exam and certificate | Not completed |
 
-The exact exercise sequence and names follow the official freeCodeCamp V9 curriculum. The **next visible activity** in the supplied curriculum screenshot is the lab *Debug Camperbot's Profile Page*.
+The exact exercise sequence and names follow the official freeCodeCamp V9 curriculum. The **next visible activity** after Lab 01 is *Understanding HTML Attributes* (theory); this is not yet claimed as completed.
 
 ## Documentation and verification rules
 
@@ -119,4 +142,4 @@ The exact exercise sequence and names follow the official freeCodeCamp V9 curric
 4. **Use reviews for understanding:** the workshop `REVIEW.md` can explain individual steps; root `RWD_REVIEW.md` synthesizes cross-cutting concepts and should not duplicate the full workshop transcript.
 5. **Protect the learning record:** update only intended files, inspect `git status`/`git diff`, and commit descriptive changes without rewriting unrelated history.
 
-*Last documentation update: 2026-11-10. This README reports the verified checkpoint above and should be refreshed after subsequent activities.*
+*Last documentation update: 2026-11-11. Lab 01 local tests are included for reproducibility; Windows execution should be recorded after verification.*
