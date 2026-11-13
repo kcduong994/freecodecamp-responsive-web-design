@@ -1,116 +1,122 @@
-# Lab 02 — Debugging HTML Image and Link Attributes / Ôn tập kiến thức
+# Lab 02 — HTML Image and Link Attributes / Ôn tập kiến thức
 
-**Exercise:** Debug a Pet Adoption Page  
-**Date:** 2026-11-13  
-**Completed in freeCodeCamp:** 100%, **5/5 checks passed** (learner screenshot).  
-**Scope:** `img`, `a`, `src`, `href`, `alt`, void elements and HTML source debugging.
+**Activity:** Debug a Pet Adoption Page  
+**Core topics:** HTML attributes, `img`, `a`, `src`, `alt`, `href`, void elements and URLs.
 
-## 1. Core distinction: element vs attribute
+## 1. Attribute syntax and meaning
 
-An **HTML element** represents a type of content or behavior. An **attribute** supplies a particular property in its opening tag. Attributes are not interchangeable merely because they both contain URL strings.
+An HTML **attribute** provides additional information in an element's opening tag. Attribute names have defined roles and cannot be exchanged arbitrarily.
 
 ```html
 <img src="cats.jpg" alt="Two kittens sleeping">
 <a href="/cats">Visit cats page</a>
 ```
 
-- `img` embeds an image. `src` names the image resource; `alt` supplies text as an alternative to that image.
-- `a` creates a hyperlink when supplied an `href`, which identifies the navigation destination.
-- The lab initially used `href` on `img` and `src` on `a` — both are incorrect for their intended tasks.
+- `img`: image element (phần tử hình ảnh).
+- `src`: *source* — identifies the resource to embed.
+- `alt`: *alternative text* — supplies a textual alternative to an image.
+- `a`: *anchor* — can create a hyperlink.
+- `href`: *hypertext reference* — identifies the hyperlink's destination.
 
-## 2. What does the browser actually do?
+The original lab mistakenly used `href` on `img`, `att` in place of `alt`, and `src` on the anchors. The corrected page uses the appropriate attributes.
 
-1. The browser parses the markup into a **DOM** (Document Object Model) tree.
-2. For `img`, it uses a recognized **`src`** URL to request and display the image. A mistaken `href` does not substitute for that mechanism.
-3. The browser associates image **`alt`** text with the image as a text alternative. The invented `att` attribute does not supply this recognized semantic function.
-4. For `a`, a valid **`href`** makes the anchor a hyperlink. `src` on `a` does not make it navigate to that URL.
-5. An HTML **void element** such as `img` has no content children and cannot have a corresponding `</img>` closing tag.
+## 2. Void elements versus normal paired elements
 
-**Important extension:** browsers are fault-tolerant, but their ability to render content does not guarantee valid or accessible HTML. The HTML parser may ignore or recover from some errors; verify the resulting DOM and the behavior, not just the existence of text in Preview.
+`img` is a **void element**. It cannot have content children and has no closing `</img>` tag in HTML.
 
-## 3. The image's alternative text
-
-The lab's completed markup uses:
+By contrast, the anchor contains text and has a proper closing tag:
 
 ```html
-<img
-  src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/cats.jpg"
-  alt="Two tabby kittens sleeping together on a couch."
->
+<a href="/dogs">Visit dogs page</a>
 ```
 
-`alt` should communicate the relevant information the image contributes, based on its purpose and context. It is not merely a tooltip and is not only for broken images. A screen reader can announce the alternative text when appropriate; if the image fails to load, a browser may display it as fallback text.
+**Extension:** writing a trailing slash on a void element such as `<img ... />` is often tolerated in HTML syntax, but it is not an actual closing tag. The workshop's required solution simply uses `<img ...>`.
 
-**Extension (not assessed in this lab):** a purely decorative image may use `alt=""`; meaningful images generally need an appropriate text alternative. Do not simply replace every image's `alt` with the filename.
+## 3. Browser behavior and accessibility
 
-## 4. Relative URL semantics (extension)
+### Image loading
 
-- `https://cdn.freecodecamp.org/.../cats.jpg` is an absolute HTTPS URL to a resource on a different host.
-- `/cats` and `/dogs` are **root-relative** paths, resolved against the current site's origin (or the current file URL context).
-- `href="/cats"` can be syntactically correct **even if no `/cats` route exists** on a given local test server. Markup validity and resource/route availability are separate properties.
+The browser examines `img[src]`, resolves the URL and requests the resource. An `href` attribute on `img` does not replace the recognized image-source mechanism.
 
-## 5. Debugging checklist
+### Text alternative
 
-| Symptom | Typical mistake | What to check |
+`alt` communicates the image's relevant meaning. It is not just an optional caption or a tooltip. When an image is informative, the alternative should express the information needed in context. A screen reader can expose this text to users who cannot see the image.
+
+**Extension:** images that are purely decorative may use an empty alternative (`alt=""`), but that choice depends on the image's role in the surrounding content.
+
+### Hyperlink behavior
+
+An anchor with `href` gives the browser a destination to navigate to. An `a` element containing `src="/cats"` does not automatically become a hyperlink to `/cats`.
+
+## 4. Absolute URLs and root-relative URLs
+
+| URL | Type | Interpretation |
 | --- | --- | --- |
-| Image does not appear | `href` used instead of `src` | Inspect `img` source attribute and network response |
-| Image alternative is missing | `att` instead of `alt` | Inspect `alt` on the `img` DOM element |
-| Unexpected closing markup | `</img>` | Remove the invalid closing tag for the void element |
-| Anchor text is not a link | `src` instead of `href` | Inspect `a` and its destination |
-| Clicking link fails locally | Target route does not exist | Separate correct HTML from server routing |
-| Tests pass but page still needs review | Tests cover limited cases | Check accessibility and network behavior separately |
+| `https://cdn.freecodecamp.org/curriculum/cat-photo-app/cats.jpg` | Absolute HTTPS URL | Names the host and resource path explicitly |
+| `/cats` | Root-relative path | Resolved from the current site's origin (or file context) |
+| `/dogs` | Root-relative path | Same behavior as `/cats` |
 
-## 6. Technical English — UK IPA and Vietnamese
+A syntactically correct anchor may still lead to a missing destination if the server does not implement the corresponding route. In this lab, the root-relative links are part of the required solution; do not invent local routes merely to demonstrate clicking them.
 
-| English term | UK IPA | Tiếng Việt |
+## 5. Five debugging lessons
+
+| Symptom | Root cause | What to inspect |
+| --- | --- | --- |
+| Cat photograph missing | Used `href` instead of `src` on `img` | Image source attribute |
+| Alternative description not recognized | Used `att` instead of `alt` | Correct name and text value |
+| Unnecessary closing markup | Used `</img>` | Void-element rules |
+| Cat link not navigable | Used `src` instead of `href` | Anchor's `href` |
+| Dog link not navigable | Same attribute mix-up | Anchor's `href` |
+
+These are **HTML markup defects**. Resource connectivity, browser compatibility and complete accessibility require separate consideration.
+
+## 6. Technical English — British English IPA
+
+| Term | IPA | Vietnamese |
 | --- | --- | --- |
 | Attribute | /ˈæt.rɪ.bjuːt/ | Thuộc tính |
 | Source | /sɔːs/ | Nguồn tài nguyên |
 | Reference | /ˈref.ər.əns/ | Tham chiếu |
 | Alternative | /ɒlˈtɜː.nə.tɪv/ | Thay thế |
 | Image | /ˈɪm.ɪdʒ/ | Hình ảnh |
-| Anchor | /ˈæŋ.kə/ | Phần tử neo/liên kết |
+| Anchor | /ˈæŋ.kə/ | Thẻ neo/liên kết |
 | Hyperlink | /ˈhaɪ.pə.lɪŋk/ | Siêu liên kết |
 | Void element | /vɔɪd ˈel.ɪ.mənt/ | Phần tử rỗng |
 | Adoption | /əˈdɒp.ʃən/ | Việc nhận nuôi |
 | Accessibility | /əkˌses.əˈbɪl.ə.ti/ | Khả năng tiếp cận |
-| Relative URL | /ˈrel.ə.tɪv ˌjuː ɑːr ˈel/ | Địa chỉ URL tương đối |
+| Relative URL | /ˈrel.ə.tɪv ˌjuː ɑːr ˈel/ | URL tương đối |
 | Debugging | /ˌdiːˈbʌɡ.ɪŋ/ | Gỡ lỗi |
 
-In code, the exact names `src`, `alt` and `href` are technical identifiers, not arbitrary abbreviations you can rename. `src` commonly abbreviates *source*; `alt` abbreviates *alternative*; `href` is historically called a *hypertext reference*.
+## 7. Self-assessment — answer before consulting the source
 
-## 7. Six levels of self-assessment — no answer key
+**Remember**
+1. Which attribute specifies the address of an embedded image, its text alternative and an anchor's target?
+2. Which of the two elements, `img` and `a`, is void?
 
-Complete the questions yourself before requesting grading. Extensions are marked explicitly.
+**Understand**
+3. Why will `<img href="cats.jpg">` not load the image as intended?
+4. Why does `alt` provide better semantics than an invented `att` attribute?
 
-**Remember / Ghi nhớ**
-1. Name the attributes that specify an embedded image's URL, its text alternative and a hyperlink's destination.
-2. Which element is void: `img` or `a`? Write the proper form of each element.
+**Apply**
+5. In a temporary file, correct `<img href="dog.jpg" att="Brown dog"></img>`.
+6. Make `<a src="/adopt">Adopt now</a>` a proper hyperlink.
 
-**Understand / Thông hiểu**
-3. Why does `<img href="cats.jpg">` not embed that image as intended?
-4. Why is `alt="Two tabby kittens sleeping together on a couch."` more useful than `att="..."`?
+**Analyze**
+7. The words “Visit cats page” appear but are not clickable. Which markup and DOM details would you inspect?
+8. What is the difference between an anchor without `href` and a valid anchor whose destination returns HTTP 404? *(Extension)*
 
-**Apply / Vận dụng**
-5. In a temporary file, fix `<img href="dog.jpg" att="A brown dog"></img>` with minimal edits.
-6. Make `<a src="/adopt">Adopt now</a>` into a navigable hyperlink.
+**Evaluate — extension**
+9. Is passing every freeCodeCamp check sufficient to establish that the page is fully accessible? Explain what evidence would still be needed.
 
-**Analyze / Phân tích**
-7. A page renders the words “Visit cats page” but they cannot be clicked. List two concrete checks you would make in DevTools.
-8. Explain the difference between a link that is missing its `href` and a valid link whose target path returns HTTP 404. *(Extension)*
+**Create — extension**
+10. Design an HTML-only display for two coastal-engineering field stations. Include one image with meaningful `alt` and two navigation links; justify their attributes.
 
-**Evaluate / Đánh giá — extension**
-9. Does a 5/5 freeCodeCamp result establish that a website is fully accessible? Explain which evidence is still missing.
+## 8. Personal checklist
 
-**Create / Sáng tạo — extension**
-10. Sketch an HTML-only page presenting two coastal-engineering observation stations. Include meaningful headings, one informative image with suitable `alt`, and two navigation links; explain your choices.
+- [ ] I choose `src`, `alt` and `href` according to the element's purpose.
+- [ ] I know why `img` does not have `</img>`.
+- [ ] I understand when an image needs useful alternative text.
+- [ ] I can distinguish URL validity from resource or route availability.
+- [ ] I can explain what the exercise checks do and do not establish.
 
-## 8. Self-assessment checklist
-
-- [ ] I can distinguish `src`, `href` and `alt`.
-- [ ] I can explain why `img` is a void element.
-- [ ] I know that `</img>` is incorrect in HTML.
-- [ ] I can explain why `href="/cats"` does not guarantee an actual local route.
-- [ ] I can distinguish freeCodeCamp's five checks from a broader accessibility or network audit.
-
-**This checklist is for self-study and is not itself a verified assessment.**
+Source: [index.html](./index.html). Cross-lesson synthesis: [RWD_REVIEW.md](../../RWD_REVIEW.md).

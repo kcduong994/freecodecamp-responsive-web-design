@@ -1,60 +1,70 @@
 # Workshop 01 — Conceptual Review / Ôn tập kiến thức
 
-**Workshop:** Build a Curriculum Outline  
-**Scope:** freeCodeCamp Responsive Web Design V9 — 11 completed steps only  
-**Review status:** Workshop-level notes complete; **the repository-wide `RWD_REVIEW.md` remains planned** until the full practical curriculum is finished.
+**Activity:** Build a Curriculum Outline  
+**Scope:** HTML text, elements, heading levels, paragraphs, and the introductory distinctions between HTML/CSS/JavaScript.
 
-## 1. Concepts from this workshop
+## 1. Core concepts
 
-### 1.1 HTML is not a programming language in the same sense as JavaScript
+### 1.1 HTML provides content and semantics
 
-**HTML (HyperText Markup Language)** is a **markup language**. It describes the content and structure of a webpage. The browser parses HTML to create a **DOM (Document Object Model)** tree; the visual preview uses that document structure to render the page.
+HTML (*HyperText Markup Language*) uses markup to describe webpage content and its logical structure. It is not primarily a layout engine or a replacement for application programming logic.
 
-**VI:** HTML là ngôn ngữ đánh dấu, chủ yếu mô tả nội dung và cấu trúc, không tự cung cấp logic điều khiển chương trình như JavaScript.
+**VI:** HTML định nghĩa *nội dung là gì* và *cấu trúc ý nghĩa của nội dung*. CSS chủ yếu định dạng cách trình bày; JavaScript có thể thực hiện logic và tương tác.
 
-### 1.2 Opening tag, closing tag, content, and element
+### 1.2 Tags, content and elements
 
-Example: `<h1>Welcome to freeCodeCamp</h1>`.
+```html
+<h1>Welcome to freeCodeCamp</h1>
+```
 
-- **Opening tag**: `<h1>` — starts an element.
-- **Content**: `Welcome to freeCodeCamp` — text in the element.
-- **Closing tag**: `</h1>` — closes the element.
-- **Element**: the complete structural unit represented by this markup.
+- `<h1>` — opening tag (thẻ mở).
+- `Welcome to freeCodeCamp` — content (nội dung).
+- `</h1>` — closing tag (thẻ đóng).
+- The full structure — HTML element (phần tử HTML).
 
-Not all elements require closing tags (for example, `meta` is a void element). That detail belongs to later HTML material; the elements practiced here (`h1`, `h2`, `h3`, `p`) do have explicit closing tags.
+Do not assume all HTML elements need a closing tag. Void elements such as `img` will be introduced in later practice; **the heading and paragraph elements here do require closing tags**.
 
-### 1.3 Heading hierarchy is semantic, not a font-size shortcut
+### 1.3 Headings represent hierarchy
 
-| Element | Role in this completed page |
+| Markup | Role |
 | --- | --- |
-| `<h1>` | Page-level welcome heading |
-| `<h2>` | Curriculum section heading |
-| `<h3>` | HTML, CSS and JavaScript topic headings |
-| `<p>` | Explanatory paragraph |
+| `h1` | Main welcome heading |
+| `h2` | Curriculum heading |
+| `h3` | Three parallel topic headings |
+| `p` | Explanation or introductory paragraph |
 
-Heading levels communicate hierarchy to readers and assistive technology. In this lesson the `<h3>` headings logically sit beneath the `<h2>` curriculum heading. The browser's default styles happen to make headings larger and bolder, but the element's **meaning** is not defined by font size.
+The workshop uses one `h1` and one `h2`, followed by three sibling `h3` headings. A lower-number heading is not just a way to make letters bigger. Headings communicate structure to readers and assistive technology.
 
-**Nuance:** “Only one `<h1>` per page” is a common beginner guideline and matches this project. HTML does **not** generally fail validation merely because a document contains more than one `<h1>`; the key objective is a clear, meaningful heading structure.
+**Nuance:** one meaningful `h1` is a useful beginner convention, but having multiple `h1` elements does not, by itself, automatically make every HTML document invalid.
 
-### 1.4 The roles of HTML, CSS, and JavaScript
+### 1.4 Why does the preview change?
 
-- **HTML** — structured content and semantics.
-- **CSS** — presentation: color, font, spacing, layout, and responsive behavior.
-- **JavaScript** — program logic and interaction, such as reacting to button clicks or form events.
+The browser converts HTML into a DOM (*Document Object Model*) tree and applies default presentation rules. Adding `<h1>` often produces bigger, bolder text because of the browser's **user-agent stylesheet**. This appearance is a default style, not the meaning of the tag.
 
-**VI:** HTML trả lời *cái gì và tổ chức thế nào*; CSS trả lời *trông như thế nào*; JavaScript xử lý *hành vi tương tác và logic*.
+```text
+Plain text: browser can still display it
+      ↓ add meaningful HTML markup
+Heading / paragraph elements in DOM
+      ↓ browser default presentation
+Visually distinct headings and paragraphs
+```
 
-### 1.5 Why the preview changes after using `<h1>`
+### 1.5 Recognize the limited scope
 
-The browser applies a **user-agent stylesheet** (CSS mặc định của trình duyệt) to headings and paragraphs. That explains why the plain text shown in Step 1 becomes larger and bold after being wrapped with `<h1>` in Step 2, even though the workshop introduces no CSS rules.
+The exercise *mentions* CSS and JavaScript but does not require custom CSS rules or JavaScript code. The added HTML5 document wrapper in the archived `index.html` is a convenience for opening the file locally, not a separate completed theory lesson.
 
-### 1.6 What freeCodeCamp tested, and what our local check tests
+## 2. Common mistakes
 
-The supplied screenshots show all 11 challenges marked complete and freeCodeCamp reporting that code passes. Our local Python tests independently inspect the packaged source's **syntax-oriented structure** and exact archived content. Neither form of evidence proves cross-browser compatibility, accessibility conformance, or production readiness.
+1. Forgetting `</h1>`, `</h2>`, `</h3>` or `</p>`.
+2. Choosing heading tags solely for their default font sizes.
+3. Leaving a real paragraph as raw text without marking its role.
+4. Confusing a tag with the element as a whole.
+5. Claiming a concept has been mastered merely because its name appears in the page.
+6. Assuming the browser preview establishes all aspects of correctness.
 
-## 2. Technical English glossary (IPA, UK approximate)
+## 3. Technical vocabulary — British English IPA
 
-| Term | IPA | Vietnamese meaning |
+| Term | IPA | Vietnamese |
 | --- | --- | --- |
 | Hypertext | /ˈhaɪ.pə.tekst/ | Siêu văn bản |
 | Markup | /ˈmɑː.kʌp/ | Đánh dấu |
@@ -65,54 +75,44 @@ The supplied screenshots show all 11 challenges marked complete and freeCodeCamp
 | Subheading | /ˈsʌbˌhed.ɪŋ/ | Tiêu đề phụ |
 | Paragraph | /ˈpær.ə.ɡrɑːf/ | Đoạn văn |
 | Structure | /ˈstrʌk.tʃə/ | Cấu trúc |
-| Content | /ˈkɒn.tent/ | Nội dung |
+| Hierarchy | /ˈhaɪə.rɑː.ki/ | Hệ phân cấp |
 | Curriculum | /kəˈrɪk.jə.ləm/ | Chương trình học |
 | Outline | /ˈaʊt.laɪn/ | Dàn ý |
-| Interactive | /ˌɪn.tərˈæk.tɪv/ | Có tính tương tác |
 | Preview | /ˈpriː.vjuː/ | Xem trước |
+| Semantic | /sɪˈmæn.tɪk/ | Mang ngữ nghĩa |
 
-## 3. Typical beginner mistakes / Lỗi cần tránh
+## 4. Self-assessment questions — no answer key
 
-1. **Missing closing tags** — viết `<h3>Introduction to HTML` nhưng quên `</h3>`.
-2. **Using heading tags only for visual size** — chọn `<h3>` vì thấy nhỏ hơn, thay vì xét cấu trúc nội dung.
-3. **Using plain text instead of a paragraph** — trình duyệt có thể hiển thị, nhưng thiếu ngữ nghĩa của `<p>`.
-4. **Claiming CSS was written in this exercise** — lesson *mentions* CSS but uses no explicit CSS rules.
-5. **Treating freeCodeCamp pass as complete accessibility validation** — automated curriculum checks have a narrower purpose.
-6. **Inconsistent capitalization:** the completed screenshot contains `Javascript` and `javaScript`; professional writing normally spells the language **JavaScript**. The archive keeps the lesson output unchanged for reproducibility.
+Answer independently; questions labeled **extension** go beyond the workshop itself.
 
-## 4. Six levels of self-assessment (không kèm đáp án)
+**Remember**
+1. Expand the acronym HTML and explain its primary responsibility.
+2. Identify the opening tag, content and closing tag in `<p>Hello</p>`.
 
-Write answers yourself before asking for feedback. These questions intentionally include extensions beyond the workshop; such questions are labeled **Mở rộng**.
+**Understand**
+3. Why does wrapping text in `h1` change its normal appearance without custom CSS?
+4. Why is `h3` more meaningful than a plain `p` for “Introduction to CSS” in this document?
 
-**Level 1 — Remember (Ghi nhớ)**  
-Q1. What do the letters HTML stand for? Write a complete Vietnamese definition.  
-Q2. Identify the opening tag, content, and closing tag in `<p>Hello</p>`.
+**Apply**
+5. In a temporary copy, add a new `Introduction to Git` topic with a heading and a paragraph.
+6. Write a paragraph describing why semantic structure matters.
 
-**Level 2 — Understand (Thông hiểu)**  
-Q3. Why does `<h1>` usually look larger than unwrapped text, even without a custom CSS file?  
-Q4. Why is an `<h3>` heading more appropriate than `<p>` for “Introduction to CSS” in this page?
+**Analyze**
+7. What is wrong with `<h3>Introduction to HTML</h2>`? Explain the underlying problem.
+8. Sketch the document outline, counting the headings at each level.
 
-**Level 3 — Apply (Vận dụng)**  
-Q5. Add a new topic “Introduction to Git” using the same structure as the existing topics. Which two element types should you use? *(Do this in a temporary copy, not the archived source.)*
+**Evaluate — extension**
+9. Someone uses `h1` for every section because it looks large. Is this a sound decision? Defend your answer.
 
-**Level 4 — Analyze (Phân tích)**  
-Q6. Find the structural mistake: `<h3>Introduction to HTML</h2>`. Explain its likely effect.  
-Q7. Draw the heading hierarchy of this workshop and state how many elements exist at each heading level.
+**Create — extension**
+10. Sketch an HTML-only outline for a coastal-engineering course with a main title, subsections and explanatory paragraphs. Explain your heading choices.
 
-**Level 5 — Evaluate (Đánh giá) — Mở rộng**  
-Q8. A developer uses `<h1>` for every section because it looks large. Assess the semantic risks.  
-Q9. Does passing a freeCodeCamp structural test prove keyboard accessibility? Why or why not?
+## 5. Personal mastery checklist
 
-**Level 6 — Create (Sáng tạo) — Mở rộng**  
-Q10. Propose an HTML-only outline for a coastal-engineering course, preserving meaningful heading levels and paragraphs. Describe how to verify the hierarchy.
+- [ ] I distinguish **tag** and **element**.
+- [ ] I can explain the roles of `h1`, `h2`, `h3` and `p`.
+- [ ] I understand that plain text can render without explicit semantic markup.
+- [ ] I can describe HTML, CSS and JavaScript responsibilities.
+- [ ] I can reason about default browser styling versus HTML semantics.
 
-## 5. Ready for the next lesson?
-
-- [ ] I can distinguish **tag** from **element**.
-- [ ] I know when to use `h1`, `h2`, `h3` and `p`.
-- [ ] I can explain why raw text still displays in a browser.
-- [ ] I can distinguish HTML, CSS, and JavaScript responsibilities.
-- [ ] I have opened `index.html` locally and run the source tests.
-- [ ] I can explain what the automated tests prove and what they cannot prove.
-
-> The checklist is a self-assessment aid, **not a claim that these items were individually verified by the instructor**.
+For the exact source, see [index.html](./index.html). For the course-wide synthesis, see [RWD_REVIEW.md](../../RWD_REVIEW.md).

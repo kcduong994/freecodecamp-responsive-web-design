@@ -1,4 +1,4 @@
-# Local IDE and operating system files
+# Editor and operating-system files
 .vscode/
 .idea/
 .DS_Store
@@ -6,7 +6,7 @@ Thumbs.db
 *.swp
 *.swo
 
-# Temporary downloads and generated artifacts
+# Temporary and generated content
 node_modules/
 dist/
 build/
@@ -15,15 +15,16 @@ coverage/
 *.log
 *.zip
 
-# Python test runner cache (workshop's standard-library tests)
+# This HTML/CSS learning archive does not track Python scripts
+*.py
 __pycache__/
 *.py[cod]
 
-# Secrets (not normally needed for pure HTML/CSS)
+# Credentials and local configuration
 .env
 .env.*
 !.env.example
 *.pem
 *.key
 
-# Keep source HTML, CSS, JS, images, SVG, and project screenshots tracked.
+# HTML, CSS, JavaScript, images and Markdown learning materials remain tracked.

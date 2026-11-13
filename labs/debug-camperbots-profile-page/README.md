@@ -1,92 +1,56 @@
 # Lab 01 — Debug Camperbot's Profile Page
 
-> **Curriculum:** freeCodeCamp Responsive Web Design V9 — Basic HTML  
-> **Activity:** Independent Lab 01  
-> **freeCodeCamp status:** Completed — **100%**, “Congratulations. Your code passes.”  
-> **Evidence:** final code, preview and passed-tests screenshot supplied by the learner on **2026-11-11**.  
+> **Curriculum:** freeCodeCamp Responsive Web Design V9 → Basic HTML  
+> **Type:** Independent debugging lab  
+> **Status:** Completed — freeCodeCamp checks passed  
 > **Official curriculum:** [Responsive Web Design V9](https://www.freecodecamp.org/learn/responsive-web-design-v9/)
 
-## Goal
+## Objective
 
-Debug an existing HTML profile page by correcting incorrect element names and a malformed closing tag, while preserving the required text. This lab practices diagnosing an HTML source rather than following individual workshop steps.
+Correct the HTML mistakes in Camperbot's profile page while keeping the required headings and exact text. This lab develops the ability to read markup carefully rather than relying only on how the page appears in Preview.
 
-## Project structure
+## Files
 
 ```text
 labs/debug-camperbots-profile-page/
-├── index.html             # Final corrected HTML; opens directly in a browser
-├── README.md              # Lab requirements and verification
-├── REVIEW.md              # Concepts, IPA, pitfalls, and questions
-└── tests/
-    └── test_html.py       # Dependency-free local structural tests
+├── index.html
+├── README.md
+└── REVIEW.md
 ```
 
-## Errors resolved
+## Problems fixed
 
-| Original markup | Corrected markup | Reason |
+| Initial markup | Correct form | Why |
 | --- | --- | --- |
-| `<heading2>About</heading2>` | `<h2>About</h2>` | `heading2` is not the standard HTML level-two heading element. |
-| `<pp>My name ...</pp>` | `<p>My name ...</p>` | Paragraphs use the `p` element. |
-| `<h3>Background and Interests<h3/>` | `<h3>Background and Interests</h3>` | Closing tags use `</name>`, not `<name/>`. |
-| `<pp>I enjoy ...</pp>` | `<p>I enjoy ...</p>` | The second paragraph needs a valid `p` element too. |
+| `<heading2>About</heading2>` | `<h2>About</h2>` | A standard second-level heading is `h2` |
+| `<pp>My name ...</pp>` | `<p>My name ...</p>` | A paragraph uses the `p` element |
+| `<h3>Background and Interests<h3/>` | `<h3>Background and Interests</h3>` | Closing tags use `</name>` |
+| `<pp>I enjoy ...</pp>` | `<p>I enjoy ...</p>` | The final sentence is also a paragraph |
 
-### Completed hierarchy
+## Correct structure
 
 ```text
-body
-├── h1  Hello from Camperbot!
-├── h2  About
-├── p   My name is Camperbot and I love learning new things.
-├── h3  Background and Interests
-└── p   I enjoy solving puzzles.
+h1  Hello from Camperbot!
+h2  About
+p   My name is Camperbot and I love learning new things.
+h3  Background and Interests
+p   I enjoy solving puzzles.
 ```
 
-The final visible strings and capitalization match the learner's screenshot. The **standalone** `index.html` adds `<!DOCTYPE html>`, `<html lang="en">`, `<head>`, metadata and `<body>` for convenient local use; freeCodeCamp's editor only showed the inner HTML fragment. Those additional document elements are *packaging additions*, not claims about what Lab 01 taught or checked.
+The freeCodeCamp solution is a short HTML fragment. The archived `index.html` includes an ordinary HTML5 document wrapper to open locally. That wrapper is for packaging; it was not part of the errors being debugged.
 
-No CSS stylesheet, JavaScript program, framework or package dependency was introduced.
+## What this teaches
 
-## What was verified
+- HTML tag names must match their intended standard elements.
+- An unknown tag such as `heading2` may still produce visible text, but not the semantics of `h2`.
+- `<h3/>` is not a valid way to close an existing `h3` in ordinary HTML.
+- Browsers may recover from malformed markup, changing the DOM and the displayed result.
+- Source correctness, rendered appearance and accessibility are related, but different concerns.
 
-| Evidence | Result | Scope |
-| --- | --- | --- |
-| freeCodeCamp | **Passed — 100%** | Lab's official checks, shown in screenshot dated 2026-11-11 |
-| Local test suite | Run using command below | Exact text/order, heading counts, balanced tags, metadata, unexpected markup |
-| Browser compatibility / accessibility | Not independently verified | Separate testing would be required |
+## Inspect locally
 
-## Open and test locally
+Open [`index.html`](./index.html) in a browser. Check that the About and Background and Interests labels are headings, while the two descriptive sentences are ordinary paragraphs. In **Developer Tools → Elements**, inspect the actual element names and hierarchy. If experimenting with incorrect tags, use a disposable copy and keep the archived solution unchanged.
 
-Open `index.html` directly in a modern browser. A development server is **not needed** for static HTML.
+The lab's successful freeCodeCamp result confirms its course requirements, not a full accessibility or cross-browser audit.
 
-From the **repository root** run:
-
-```powershell
-py -m unittest discover -s labs/debug-camperbots-profile-page/tests -p "test_*.py" -v
-```
-
-Replace `py` with `python` if necessary. The suite contains **eight** standard-library tests. A successful run should report `Ran 8 tests` and `OK`.
-
-Optionally start a local server:
-
-```powershell
-py -m http.server 8000 -d labs/debug-camperbots-profile-page
-```
-
-Then navigate to `http://localhost:8000/` and stop the server with `Ctrl+C`.
-
-## Manual debugging exercise
-
-Work on a **temporary copy** of `index.html` so the archived result stays unchanged:
-
-1. Change `<h2>` to `<heading2>` and observe how browser presentation and semantics differ.
-2. Change `<p>` to `<pp>` and inspect the *Elements* panel in Developer Tools.
-3. Change `</h3>` to `<h3/>` and inspect the DOM tree the parser actually constructed.
-4. Restore the correct source and rerun all local tests.
-
-## Learning record
-
-- **HTML elements practiced:** `h1`, `h2`, `h3`, `p`.
-- **Skills added:** correcting nonstandard element names and malformed closing-tag syntax; distinguishing markup, browser preview and DOM.
-- **Broader caveat:** a visible page or passing local test does not prove full accessibility or cross-browser compatibility.
-- **Next freeCodeCamp activity shown in the learner's curriculum:** *Understanding HTML Attributes* (theory; not yet marked complete).
-
-Read [REVIEW.md](./REVIEW.md) for a deeper explanation, pronunciation glossary, and independent self-assessment. The root [README.md](../../README.md) and [RWD_REVIEW.md](../../RWD_REVIEW.md) track overall progress and cumulative knowledge.
+For terminology, browser parsing details, common mistakes and questions, read [REVIEW.md](./REVIEW.md). The broader connections appear in [RWD_REVIEW.md](../../RWD_REVIEW.md).

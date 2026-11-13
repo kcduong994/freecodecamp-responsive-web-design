@@ -1,69 +1,68 @@
-# Lab 01 — HTML Debugging / Ôn tập gỡ lỗi HTML
+# Lab 01 — HTML Debugging / Ôn tập kiến thức
 
-**Lab:** Debug Camperbot's Profile Page  
-**Status:** Passed on freeCodeCamp — 100% (2026-11-11 screenshot).  
-**Scope:** Correcting invalid element names and a malformed `h3` closing tag.  
-**Approach:** First diagnose the error, then explain why the corrected HTML works. Answers to the self-assessment questions are intentionally omitted.
+**Activity:** Debug Camperbot's Profile Page  
+**Core themes:** standard elements, closing tags, browser error recovery and semantic hierarchy.
 
-## 1. Key concepts / Kiến thức trọng tâm
+## 1. Understand the failure, not just the correction
 
-### 1.1 Syntax is not the same as appearance
+### Incorrect element names
 
-**HTML syntax** (cú pháp HTML) specifies how HTML element tags and content are written. A browser may display text even when markup contains mistakes. Rendering some content **does not prove** the intended semantic HTML elements were created.
+`<heading2>` and `<pp>` are not the standard HTML elements for second-level headings and paragraphs. Browsers can create unfamiliar elements without guessing what the author intended. Writing `heading2` does **not** create `h2` semantics; writing `pp` does **not** create a standard paragraph.
 
-The original source used `<heading2>` and `<pp>`. These are not the standard heading or paragraph elements (`h2` and `p`); the parser does not infer the intended semantics from similar-looking names.
-
-### 1.2 Correct opening and closing tags
+### Incorrect closing syntax
 
 ```html
 <h3>Background and Interests</h3>
 ```
 
-- `<h3>` — **opening tag** (thẻ mở)
-- `Background and Interests` — **text content** (nội dung)
-- `</h3>` — **closing tag** (thẻ đóng)
+An opening tag looks like `<h3>`, while a closing tag looks like `</h3>`. The original `<h3/>` is not an equivalent closing tag in an HTML document. The parser may recover from this mistake, but its resulting DOM can differ from the intended document.
 
-**Extension:** `<h3/>` is not a valid substitute for `</h3>` in ordinary HTML markup. For a non-void HTML element such as `h3`, the trailing slash does not serve as an HTML closing tag. The browser's HTML parser can recover from this kind of mistake but may construct an unexpected tree.
+### Semantic heading hierarchy
 
-### 1.3 Heading hierarchy and paragraphs
+The finished page follows `h1 → h2 → p → h3 → p`. The semantic meaning is more important than how large the heading appears by default. `h1` announces the main page title; `h2` and `h3` represent progressively narrower heading levels in the exercise.
 
-The finished page has exactly one `h1`, one `h2`, one `h3` and two `p` elements. Heading levels communicate document structure; they should not be chosen only for font size. Paragraph elements mark ordinary prose.
-
-### 1.4 Source → DOM → rendered preview
+## 2. Source, DOM and preview
 
 ```text
-HTML source (possibly incorrect)
+HTML markup (possibly incorrect)
         ↓
-HTML parser + error recovery
+Browser HTML parser and error recovery
         ↓
-DOM tree (Document Object Model)
+Document Object Model (DOM)
         ↓
 Browser default styles and layout
         ↓
-Preview (visible result)
+Rendered page / preview
 ```
 
-**Learned:** fixing tags can change both hierarchy and appearance. **Extension:** the detailed HTML error-recovery algorithm and computed browser styles go beyond the particular lab's instructions. Use browser Developer Tools → Elements to see the actual DOM.
+The fact that a browser can show the text is not evidence that the intended element names and relationships are correct. Use **Developer Tools → Elements** to inspect what the browser actually constructed.
 
-### 1.5 Practical debugging workflow
+**Extension:** error recovery is governed by HTML parsing rules. In production, avoid relying on those rules to hide malformed markup; write predictable, meaningful HTML instead.
 
-1. Read the user stories and identify the required element types, counts and exact text.
-2. Inspect incorrect names, missing delimiters and mismatched opening/closing tags.
-3. Apply the smallest changes that satisfy the intended semantics.
-4. Compare the HTML source with the browser preview and DOM tree.
-5. Run freeCodeCamp tests and separate local source tests; record what each confirms.
+## 3. A practical debugging process
 
-## 2. Original issues and corrections
+1. Read user stories and list the element names and text that must remain.
+2. Compare the markup against correct HTML syntax.
+3. Identify unknown names, incorrect delimiter order and mismatched tags.
+4. Fix only the smallest number of necessary characters.
+5. Inspect the source, rendered page and DOM.
+6. Use the official freeCodeCamp check for the exercise's acceptance criteria.
 
-| Mistake | Why it fails the intended requirement | Correction |
+This process applies equally well to more complex interfaces, although later lessons may introduce additional inspection tools.
+
+## 4. Typical errors
+
+| Issue | Example | Better approach |
 | --- | --- | --- |
-| `<heading2>` | Not an `h2` heading | Use `<h2>` and `</h2>` |
-| `<pp>` | Not a standard paragraph element | Use `<p>` and `</p>` |
-| `<h3/>` | Does not properly close an existing `h3` in HTML | Use `</h3>` |
+| Mistyped heading | `<heading2>` | Use `<h2>` |
+| Mistyped paragraph | `<pp>` | Use `<p>` |
+| Wrong closing delimiter | `<h3/>` | Use `</h3>` |
+| Visual-only assessment | “The page looks fine” | Inspect markup and DOM |
+| Excessive rewriting | Changing unrelated text | Preserve user-story content |
 
-## 3. Technical English (UK pronunciation / IPA)
+## 5. Technical English — British English IPA
 
-| Word or expression | IPA | Nghĩa tiếng Việt |
+| Term | IPA | Vietnamese |
 | --- | --- | --- |
 | Debug | /ˌdiːˈbʌɡ/ | Gỡ lỗi |
 | Debugging | /ˌdiːˈbʌɡ.ɪŋ/ | Quá trình gỡ lỗi |
@@ -72,51 +71,42 @@ Preview (visible result)
 | Heading | /ˈhed.ɪŋ/ | Tiêu đề |
 | Paragraph | /ˈpær.ə.ɡrɑːf/ | Đoạn văn |
 | Closing tag | /ˈkləʊ.zɪŋ tæɡ/ | Thẻ đóng |
-| Invalid | /ɪnˈvæl.ɪd/ | Không hợp lệ |
 | Profile | /ˈprəʊ.faɪl/ | Hồ sơ |
-| Validation | /ˌvæl.ɪˈdeɪ.ʃən/ | Kiểm tra tính hợp lệ |
+| Invalid | /ɪnˈvæl.ɪd/ | Không hợp lệ |
 | Semantic | /sɪˈmæn.tɪk/ | Mang ngữ nghĩa |
 | Error recovery | /ˈer.ə rɪˌkʌv.ər.i/ | Phục hồi lỗi |
+| Validation | /ˌvæl.ɪˈdeɪ.ʃən/ | Kiểm tra tính hợp lệ |
 
-## 4. Review questions (không kèm đáp án)
+## 6. Self-assessment — no answer key
 
-These questions follow six Bloom-style levels. Questions marked **extension** go beyond the basic lab.
+**Remember**
+1. Which tags create an `h2` heading and an ordinary paragraph?
+2. Write the opening and closing tags for an `h3` heading.
 
-**Remember — Ghi nhớ**
+**Understand**
+3. Why can a browser still display the words inside `<pp>...</pp>`?
+4. Why does `<h3/>` not properly close an existing `h3` element?
 
-1. Which tag defines a second-level heading? Which tag defines a paragraph?
-2. How do you write the opening and closing tags for an `h3` heading?
+**Apply**
+5. Correct `<heading2>Contact</heading2>` without changing the text.
+6. Correct `<h3>Skills<h3/>` using the fewest edits.
 
-**Understand — Thông hiểu**
+**Analyze**
+7. Find the errors in `<pp>About</pp><h3>Skills<h3/>` and describe how you would inspect the DOM.
 
-3. Why can a browser still display the words inside an unknown `<pp>` element?
-4. Why is `<h3/>` different from `</h3>` in an HTML document?
+**Evaluate — extension**
+8. Is a good-looking preview enough to prove HTML semantics are correct? Explain.
+9. What does freeCodeCamp's passing status demonstrate? What does it **not** demonstrate about accessibility?
 
-**Apply — Vận dụng**
+**Create — extension**
+10. Sketch an HTML-only researcher profile with a main heading, an About section, a subsection on research interests and two paragraphs. Justify the heading levels.
 
-5. Correct `<heading2>Contact</heading2>` while preserving the text.
-6. Correct `<h3>Research Interests<h3/>` using the fewest changes.
+## 7. Personal checklist
 
-**Analyze — Phân tích**
+- [ ] I recognize standard HTML headings and paragraphs.
+- [ ] I use the correct slash placement in closing tags.
+- [ ] I know why browser error recovery can hide source problems.
+- [ ] I can compare the markup with the actual DOM.
+- [ ] I can preserve the intended content while repairing its structure.
 
-7. Identify the issues in `<pp>About</pp><h3>Skills<h3/>`. How would you inspect the resulting DOM?
-
-**Evaluate — Đánh giá (extension)**
-
-8. Is “the page looks fine” sufficient evidence for semantic correctness? Explain.
-9. What do freeCodeCamp tests verify in this lab, and what does a separate local Python structural test *not* verify?
-
-**Create — Sáng tạo (extension)**
-
-10. Design a minimal HTML-only coastal engineering researcher profile: one main heading, an About section, an Interests subsection and two paragraphs. Explain your choice of heading levels and how you would check them.
-
-## 5. Checklist
-
-- [ ] I recognize valid HTML heading and paragraph elements.
-- [ ] I can explain the difference between opening and closing tags.
-- [ ] I know why a rendered preview might hide source mistakes.
-- [ ] I can check the DOM with browser Developer Tools.
-- [ ] I can distinguish official freeCodeCamp results from local structural tests.
-- [ ] I can correct the markup without unnecessarily rewriting the requested content.
-
-> This checklist records self-assessment prompts, **not** independent grading results.
+Source: [index.html](./index.html). Cross-lesson synthesis: [RWD_REVIEW.md](../../RWD_REVIEW.md).
