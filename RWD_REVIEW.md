@@ -1,9 +1,9 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** **In progress** — Workshop 01 (2026-11-10) and Lab 01 (2026-11-11) documented.  
+> **Status:** **In progress** — Workshop 01 (2026-11-10), Lab 01 (2026-11-11) and Lab 02 (2026-11-13) documented.  
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.  
 > **Final review:** **Not yet completed**; this document will be expanded and critically revised after the remaining practical curriculum.  
-> **Evidence:** Workshop 01 committed at [`83af1c7`](https://github.com/kcduong994/freecodecamp-responsive-web-design/commit/83af1c7d02ab4c835c1ce78d1feac82ce4150bdb); Lab 01 passed on freeCodeCamp in learner screenshot (2026-11-11).
+> **Evidence:** Workshop 01 committed at [`83af1c7`](https://github.com/kcduong994/freecodecamp-responsive-web-design/commit/83af1c7d02ab4c835c1ce78d1feac82ce4150bdb); Lab 01 passed (2026-11-11); Lab 02 passed 5/5 checks, 100% (2026-11-13). These results are from learner-supplied freeCodeCamp screenshots.
 
 ## Why this document exists / Mục đích
 
@@ -32,12 +32,12 @@ Every chapter will answer:
 | --- | --- | --- | --- |
 | 01 | HTML structure and heading hierarchy | **Learned + explained** | [Workshop 01](./workshops/build-a-curriculum-outline/README.md), **11/11 steps**, **8/8 local tests** |
 | 01B | HTML debugging and error recovery | **Learned + explained** | [Lab 01](./labs/debug-camperbots-profile-page/README.md), **freeCodeCamp 100%**; local tests packaged for verification |
-| 02 | HTML attributes and document boilerplate | **Planned** | Some standalone scaffolding was added to Workshop 01's archived file; this does not constitute completion of the theory lessons |
-| 03 | Links, images, lists, semantic sections, tables and forms | **Planned** | No completed repository exercises |
+| 02 | HTML attributes and document boilerplate | **Partial practical introduction** | [Lab 02](./labs/debug-pet-adoption-page/): `src`, `alt`, `href`; boilerplate and theory lessons not yet verified |
+| 03 | Links, images, lists, semantic sections, tables and forms | **Images and links introduced** | Lab 02 covers an image and two links; other subjects remain planned |
 | 04 | CSS syntax, selectors, cascade, inheritance, typography, color and box model | **Planned** | No completed repository exercises |
 | 05 | Layout: dimensions, positioning, Flexbox, Grid and responsive design | **Planned** | No completed repository exercises |
 | 06 | Pseudo-classes/elements, custom properties and CSS effects | **Planned** | No completed repository exercises |
-| 07 | Debugging, accessibility, browser tools and project verification | **Develop gradually** | Lab 01 introduces HTML syntax debugging; full accessibility and browser audits planned |
+| 07 | Debugging, accessibility, browser tools and project verification | **Develop gradually** | Lab 01 fixes tag syntax; Lab 02 fixes attributes/void-element usage. Full audits remain planned |
 
 ---
 
@@ -220,17 +220,69 @@ The lab's [REVIEW.md](./labs/debug-camperbots-profile-page/REVIEW.md) contains t
 
 ---
 
+## Lab 02 — HTML image and link attributes
+
+**Exercise:** [Debug a Pet Adoption Page](./labs/debug-pet-adoption-page/) — **5/5 freeCodeCamp checks passed, 100%** in learner screenshots dated **2026-11-13**. This is separate from running source tests locally and from a browser accessibility audit.
+
+### 1. What did we learn?
+
+**Learned:** a correct HTML element still needs the **appropriate attribute name** for the intended behavior. The five corrected issues were `href → src` for the image resource, `att → alt` for the image text alternative, removing invalid `</img>`, and `src → href` for **each** of the two anchor links. The image URL and two link targets `/cats`, `/dogs` were preserved.
+
+### 2. What does the browser receive?
+
+An `img` tag with `src` and `alt`, and two `a` elements with `href`. The local archive includes optional HTML5 scaffolding not shown in the freeCodeCamp lab fragment. The image URL is a full HTTPS URL; `/cats` and `/dogs` are root-relative targets.
+
+### 3. What does the browser do?
+
+**Explained:** `img[src]` identifies an image resource to fetch; `alt` supplies the text alternative. The `img` element is **void** and cannot enclose children or take a `</img>` end tag. By contrast, `a[href]` creates a hyperlink destination. Giving an anchor a `src` does not substitute for its `href`.
+
+```text
+<img src="..." alt="...">  → embedded image + text alternative
+<a href="/cats">...</a>    → hyperlink destination
+```
+
+**Extension:** a valid `href="/cats"` is not evidence that the current server actually implements `/cats`. Similarly, a correct `src` does not guarantee a successful response from an external image server. Distinguish source semantics, network availability and rendered appearance.
+
+### 4. What does the user experience?
+
+After correction, the cats photograph appears in the supplied freeCodeCamp preview and the cat/dog labels become ordinary hyperlinks. The image's meaningful `alt` provides a text alternative for users and tools that cannot use the visual image. It should be appropriate to context, not a random filename.
+
+### 5. What can fail?
+
+| Problem | Example | Diagnosis |
+| --- | --- | --- |
+| Incorrect image source attribute | `img href` | Inspect `src` and network request |
+| Invalid text alternative name | `att` | Check for `alt`, and whether its wording fits the image |
+| Invalid void-element end tag | `</img>` | Remove the closing tag |
+| Wrong anchor attribute | `a src` | Use `href` |
+| Correct markup but missing destination | `href="/dogs"` on a server without `/dogs` | Check route resolution independently |
+| False confidence from automated tests | “5/5 means fully accessible” | Separate curriculum, source, network and accessibility checks |
+
+### 6. How do we verify it?
+
+**Official:** 5/5 user stories passed, 100% in freeCodeCamp. **Packaged source:** a dependency-free Python suite checks exact HTML/text, image URL and `alt`, both `href` paths, no invalid closing tag, and basic structure. The suite ran 11/11 successfully in the preparation environment; a Windows result must be independently verified on the learner's machine. **Not established:** CDN uptime, working local routes, keyboard/screen-reader usability or cross-browser compatibility.
+
+```powershell
+py -m unittest discover -s labs/debug-pet-adoption-page/tests -p "test_*.py" -v
+```
+
+**Vocabulary and practice:** the lab-specific [REVIEW.md](./labs/debug-pet-adoption-page/REVIEW.md) contains IPA pronunciations, explanation of image alternatives and ten unanswered self-assessment questions.
+
+**Conceptual progression:** Workshop 01 introduced elements and headings; Lab 01 corrected broken tag syntax; Lab 02 corrects **attributes** and introduces **void elements**. These are distinct aspects of HTML correctness.
+
+---
+
 ## Future chapters — pending curriculum work
 
 The following are **outlines, not completed notes**. Add supported explanations and evidence as the relevant freeCodeCamp activities are completed.
 
-### Chapter 02 — HTML attributes and boilerplate
+### Chapter 02 — HTML attributes and boilerplate (partial introduction only)
 
-Attributes and attribute values; document type, language, head metadata, title and viewport; correct use and common errors.
+Lab 02 introduced `src`, `alt` and `href` in practice. Full attribute theory, document type, language, head metadata, title and viewport remain to be studied and independently verified.
 
-### Chapter 03 — HTML content, structure and accessibility
+### Chapter 03 — HTML content, structure and accessibility (partial introduction only)
 
-Links, image alternatives, lists, semantic landmarks, tables, forms, labels, validation and navigation behavior.
+Lab 02 introduced a basic image, alternative text and two links. Lists, semantic landmarks, tables, forms, labels, systematic validation and advanced navigation remain planned.
 
 ### Chapter 04 — CSS fundamentals
 
