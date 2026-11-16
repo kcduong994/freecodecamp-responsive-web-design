@@ -1,23 +1,23 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — concepts from Workshop 01, Labs 01–02 and Workshop 02 documented.
+> **Status:** In progress — Workshop 01, Labs 01–03 and Workshop 02 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
-> **Final review:** Not yet complete; future subjects are included only as a learning roadmap.
+> **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
-## Purpose and framework
+## Purpose and learning framework
 
-This is a **cross-lesson technical synthesis**, not a transcription of freeCodeCamp or a duplicate of individual activity notes. Every practical exercise has a dedicated `REVIEW.md` containing terminology with pronunciation, common mistakes and self-assessment questions.
+This document is a **cross-lesson technical synthesis**, not a transcription of freeCodeCamp. Each finished practical exercise contains its own `REVIEW.md` with deeper explanations, British English IPA and self-assessment questions.
 
-For each topic, ask:
+For every concept, ask:
 
-1. **What is it?** What is the purpose of the construct?
-2. **What does the browser receive?** What elements, attributes and resources appear in the HTML?
-3. **What does the browser do?** How does parsing build a DOM, apply defaults and load resources?
-4. **What does the user experience?** What meaning, navigation and content are exposed?
-5. **What can fail?** What mistakes could produce incorrect semantics or behavior?
-6. **How can it be inspected?** What do source, preview and browser tools establish?
+1. **What is it?** What does the construct mean?
+2. **What does the browser receive?** Which tags, attributes and resources are present?
+3. **What does the browser do?** How does the parser build the DOM and load external resources?
+4. **What does the user experience?** What content and structure are exposed?
+5. **What can fail?** Which errors cause wrong syntax, semantics or actual behavior?
+6. **How can we inspect it?** What do the source, Preview, Elements and Network panels establish?
 
-**Scope labels:** *Practiced* = used in a completed exercise; *Explained* = relevant technical interpretation; *Extension* = useful background beyond its instructions; *Planned* = not yet covered by completed practice.
+**Scope labels:** *Practiced* = used in completed coursework; *Explained* = interpretation; *Extension* = material beyond the exercise; *Planned* = future topic.
 
 ## Learning map
 
@@ -26,11 +26,12 @@ For each topic, ask:
 | 01 | HTML elements, headings and paragraphs | Practiced / explained | [Workshop 01](./workshops/build-a-curriculum-outline/) |
 | 02 | Debugging element names and closing syntax | Practiced / explained | [Lab 01](./labs/debug-camperbots-profile-page/) |
 | 03 | Images, anchor links and attributes | Practiced / explained | [Lab 02](./labs/debug-pet-adoption-page/) |
-| 04 | HTML document, semantic sections, lists, figures, captions and metadata | Practiced / explained | [Workshop 02](./workshops/build-a-cat-photo-app/), **42/42 steps** |
-| 05 | Deeper HTML accessibility, tables and forms | Planned | Future curriculum work |
-| 06 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 07 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 08 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 04 | Document structure, semantic sections, lists, figures, captions and metadata | Practiced / explained | [Workshop 02](./workshops/build-a-cat-photo-app/), **42/42 steps** |
+| 05 | Recipe page: independent user stories, `head`/`body`, ingredient and procedure lists, image behavior | Practiced / explained | [Lab 03](./labs/build-a-recipe-page/), original submission **100%** |
+| 06 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 07 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 08 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 09 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -38,52 +39,52 @@ For each topic, ask:
 
 ### Meaning of HTML
 
-**HTML** (*HyperText Markup Language*) describes the **structure and semantics** of webpage content. It is a markup language, not a replacement for application logic expressed in a programming language such as JavaScript.
+**HTML** (*HyperText Markup Language*) describes the **structure and semantics** of webpage content. It is a markup language, not a replacement for application logic expressed in JavaScript.
 
 Workshop 01 created one `h1`, one `h2`, three sibling `h3` headings and four `p` paragraphs:
 
 | Element | Role in the exercise | Important distinction |
 | --- | --- | --- |
-| `h1` | Main welcome heading | Represents a heading, not just large typography |
-| `h2` | Curriculum heading | Indicates relative section level |
-| `h3` | Three parallel subject headings | Same heading level conveys peer topics |
-| `p` | Ordinary explanatory prose | Raw text may display but lacks paragraph markup |
+| `h1` | Main welcome heading | Represents meaning, not merely a large font |
+| `h2` | Curriculum heading | Signals section hierarchy |
+| `h3` | Three parallel subject headings | Equal level suggests related peer topics |
+| `p` | Ordinary explanatory text | Raw text may render without paragraph semantics |
 
-**Tag versus element:** in `<h3>Introduction to CSS</h3>`, `<h3>` is the opening tag; `Introduction to CSS` is the text; `</h3>` is the closing tag; the complete structure is an HTML element.
+**Tag versus element:** `<h3>Introduction to CSS</h3>` comprises an opening tag, text and a closing tag. The complete construct is an HTML element.
 
 ### Browser interpretation
 
 ```text
-HTML source → HTML parser → DOM element tree
+HTML source → HTML parser → DOM tree
                                  ↓
-                        default styles
+                     user-agent default styles
                                  ↓
-                        layout / preview
+                         layout and preview
 ```
 
-Browsers ordinarily make headings larger and bolder through their default user-agent stylesheets. This visual convention is not the *semantic purpose* of the heading.
+Browsers ordinarily make headings larger and bolder via default stylesheets, but this is not the semantic purpose of a heading.
 
-**Archive distinction:** Workshop 01's freeCodeCamp editor supplied a fragment. The archived `index.html` adds an HTML document wrapper for direct local browsing. That wrapper is not a claim about curriculum topics taught in Workshop 01. The screenshot's `Javascript`/`javaScript` spelling was preserved as learner output; the conventional name is **JavaScript**.
+**Archive distinction:** the workshop editor supplied an HTML fragment. The repository adds a standalone document wrapper to allow direct browser opening. This addition is not a claim about further official lessons. The learner's spelling `Javascript`/`javaScript` was preserved where it appeared in the completed work; the conventional name is **JavaScript**.
 
 ---
 
 ## Part 02 — Debugging HTML syntax and element names
 
-A page can show text despite containing malformed HTML. Lab 01 corrected the following:
+Lab 01 corrected:
 
-| Incorrect source | Intended source | Why it matters |
+| Incorrect markup | Intended markup | Lesson |
 | --- | --- | --- |
-| `<heading2>About</heading2>` | `<h2>About</h2>` | A made-up element name does not become a standard heading |
-| `<pp>...</pp>` | `<p>...</p>` | A paragraph uses the `p` element |
-| `<h3>...<h3/>` | `<h3>...</h3>` | The closing tag begins with `</` |
+| `<heading2>About</heading2>` | `<h2>About</h2>` | A made-up element does not automatically become a standard heading |
+| `<pp>...</pp>` | `<p>...</p>` | Standard paragraph tag is `p` |
+| `<h3>...<h3/>` | `<h3>...</h3>` | An HTML closing tag starts with `</` |
 
-HTML parsers apply error-recovery rules, but their ability to construct *some* DOM does not guarantee the author received the intended hierarchy. Mistyped element names can still appear as DOM nodes without acquiring the semantics or default presentation of genuine `h2` and `p` elements.
+Browsers recover from many HTML mistakes, so source may still display text without producing the intended DOM or semantics. An unknown element can exist in the DOM without gaining the role/default styling of `h2` or `p`.
 
-**Debugging discipline:** read the user stories → compare actual and expected HTML → make minimal corrections → inspect DOM and preview → check official exercise requirements. A visible page is not, by itself, proof of valid semantics or accessibility.
+**Debugging sequence:** read requirements → compare expected/actual tags → change the smallest possible source span → inspect DOM and Preview → check the official challenge. Rendering alone is not proof of validity or accessibility.
 
 ---
 
-## Part 03 — HTML attributes, images and hyperlinks
+## Part 03 — Images, hyperlinks and attributes
 
 Lab 02 introduced the distinct roles of `img`, `a`, `src`, `alt` and `href`:
 
@@ -97,30 +98,22 @@ Lab 02 introduced the distinct roles of `img`, `a`, `src`, `alt` and `href`:
 | `img` | Embed an image |
 | `src` | Identify an embedded resource URL |
 | `alt` | Supply alternative text for an image |
-| `a` | Make a hyperlink when it has a suitable `href` |
+| `a` | Create a hyperlink when it has a suitable `href` |
 | `href` | Identify a link destination |
 
-The original lab used `href` on `img`, `att` instead of `alt`, an incorrect `</img>` and `src` on two anchors. Fixing those five faults restored the intended markup.
+The lab starter used `href` on `img`, `att` instead of `alt`, an invalid `</img>` and `src` on two links. Fixing those five faults restored the intended markup.
 
-### Void element versus an ordinary element
+An `img` is a **void element**, having no content children or closing `</img>` tag. An anchor encloses linked content and closes with `</a>`. Alternative text is not merely a tooltip; it conveys useful information when the image cannot be perceived. **Extension:** some purely decorative images correctly use `alt=""`.
 
-An `img` is a **void element**: it has no child content and must not have a closing `</img>` in HTML. An anchor normally encloses linked content and uses `</a>`.
-
-`alt` is *not just a tooltip*: it supplies a textual alternative, especially important when an image cannot be perceived. **Extension:** purely decorative images can appropriately have empty `alt` in some circumstances.
-
-### URL and route nuance
-
-A CDN image uses an absolute HTTPS URL. `/cats` and `/dogs` are root-relative paths. An anchor can have the correct `href` even when the destination does not exist on an arbitrary local site. Markup correctness and resource availability are separate issues.
+**URL nuance:** an image CDN URL is typically an absolute HTTPS URL. `/cats` and `/dogs` are root-relative. A valid `href` can still point to a missing page—HTML semantics and resource availability are different kinds of correctness.
 
 ---
 
-## Part 04 — Full HTML documents, semantic groups, lists and figures
+## Part 04 — Complete HTML documents, semantic sections, lists and captions
 
-**Primary evidence:** [Workshop 02 — Build a Cat Photo App](./workshops/build-a-cat-photo-app/), **42/42 steps completed** in freeCodeCamp. Unlike the earlier archived fragments, the complete document shell is supplied in the workshop's final code.
+**Evidence:** [Workshop 02 — Build a Cat Photo App](./workshops/build-a-cat-photo-app/) completed **42/42** steps. Unlike the older archived fragments, the complete document shell was included in this workshop's submitted source.
 
-### 1. The document skeleton and metadata
-
-The final source includes:
+### 1. HTML skeleton and metadata
 
 ```html
 <!DOCTYPE html>
@@ -133,16 +126,16 @@ The final source includes:
 </html>
 ```
 
-- `DOCTYPE` asks modern browsers to use standards mode.
-- `html` is the root element; `lang="en"` identifies the primary language.
-- `head` provides metadata, including `title` and the character encoding declaration.
-- `title` is document metadata, not a visible page heading.
-- `meta charset="UTF-8"` declares the encoding; `meta` is a void element.
-- `body` holds the page's content, including `main` and `footer`.
+- The doctype requests standards mode.
+- The `html` element is the root and `lang="en"` identifies the primary document language.
+- The `head` contains metadata, including `title` and character encoding.
+- The `title` is **not** the visible page heading.
+- `meta charset="UTF-8"` declares character encoding; `meta` is a void element.
+- The `body` contains page content.
 
-**Do not conflate:** character encoding (`charset`) with human language (`lang`). **Scope limit:** the completed source does not contain a viewport meta tag, CSS or JavaScript; none should be claimed as implemented here.
+**Do not confuse** human language (`lang`) with character encoding (`charset`). No authored CSS, JavaScript or viewport meta element was used in this particular completed workshop.
 
-### 2. Meaningful groups and heading hierarchy
+### 2. Semantic groups and heading hierarchy
 
 ```text
 body
@@ -153,20 +146,16 @@ body
 │   └── section (Cat Lists)
 │       └── h2, h3 headings, lists and two figures
 └── footer
-    └── attribution paragraph with link
+    └── attribution paragraph with a link
 ```
 
-`main` signals primary page content; `section` groups related content; `footer` identifies final information distinct from the main article. The `h1 → h2 → h3` hierarchy communicates document structure, not only different font sizes.
+`main` signals primary content, `section` groups related topics and `footer` identifies supplementary final information. Heading level reflects hierarchy, not desired font size. **Extension:** when to use `section`, `article` or a generic container depends on their actual semantic role.
 
-**Extension:** whether a grouping should use `section`, `article` or a generic container depends on semantic meaning and document context, not decorative layout. This exercise uses `section` explicitly.
+### 3. Unordered versus ordered lists
 
-### 3. Unordered and ordered list semantics
+“Things cats love” uses `ul` with three items; “Top 3 things cats hate” uses `ol` with three items. Unordered lists convey collections; ordered lists convey sequence or ranking. Browser presentation can later change with CSS, independently of the underlying semantics.
 
-The section “Things cats love” uses `ul` with three `li` items; “Top 3 things cats hate” uses `ol` with three items. The choice of ordered versus unordered list communicates whether sequence/ranking is part of the content's meaning. CSS can later control appearance without changing list semantics.
-
-### 4. Figures, captions and emphasis
-
-The workshop groups images and captions using `figure` and `figcaption`:
+### 4. Figure, caption and textual emphasis
 
 ```html
 <figure>
@@ -175,26 +164,92 @@ The workshop groups images and captions using `figure` and `figcaption`:
 </figure>
 ```
 
-- `figure` represents a self-contained unit of illustration or related content.
-- `figcaption` provides a semantic caption for that figure.
-- `em` expresses stress emphasis, commonly rendered italic by default.
-- `strong` expresses strong importance, seriousness or urgency, commonly rendered bold by default.
+`figure` represents a self-contained illustration or supporting unit; `figcaption` supplies its caption. `em` indicates stress emphasis; `strong` expresses importance, seriousness or urgency. Default italic/bold styling does not exhaust their meaning.
 
-**Important:** `em` and `strong` are not just shortcuts for italic or bold presentation.
+### 5. Clickable images and external navigation
 
-### 5. A clickable image and new browsing contexts
+A relaxing-cat `img` sits inside an `a`, making the image linked content. The `alt` describes the image; the containing anchor's `href` identifies the destination. Another link uses `target="_blank"` to request a new browsing context. **Extension:** use new-tab navigation deliberately; its security and usability implications merit consideration beyond this exercise.
 
-The image of a relaxing cat sits *inside* an `a` element, so the image functions as linked content. Its `alt` identifies the image; the surrounding anchor's `href` identifies the navigation destination. The text link with `target="_blank"` requests a new browsing context.
+### 6. Verification boundaries
 
-**Extension:** new tabs should be used deliberately for usability and accessibility. In modern browsers, `_blank` generally implies `noopener` for links, but deployment requirements and browser support deserve separate consideration. The archived markup is deliberately unchanged from the completed workshop.
+The learner's screenshots showed **42/42** accepted steps and a page Preview with photos, lists, captions and footer. This does not independently establish accessibility conformance, cross-browser layout, live deployment, source availability of every external asset or production performance.
 
-### 6. What freeCodeCamp completion does and does not establish
+---
 
-**Verified in supplied screenshots:** all **42/42 steps** were accepted; the page preview displayed headings, embedded photos, two lists, captions and a footer.
+## Part 05 — Independent Recipe Page Lab: structure, sequence and real image loading
 
-**Not independently established:** screen-reader support, cross-browser rendering, destination availability, accessibility conformance, production performance, or responsive design. External images depend on the CDN being reachable.
+**Evidence:** [Lab 03 — Build a Recipe Page](./labs/build-a-recipe-page/) was accepted by freeCodeCamp at **100%** using the learner's original Fish Recipe code. The learner also supplied a Preview showing a broken image despite passing the tests. The archived `index.html` is a **lightly polished local edition**, and that revised edition has **not** been independently re-submitted to freeCodeCamp.
 
-**Practical browser inspection:** inspect the `head`, `main`, two `section`s, nested lists and `figure` elements in Developer Tools; check the `img` attributes and the anchor `href`/`target` values; inspect which resources are loaded rather than assuming a successful build means all network requests succeeded.
+### 1. From a user story to actual HTML
+
+Lab 03 did not lead the learner step-by-step. It required selecting an appropriate collection of elements and assigning them the proper hierarchy. The page's user stories specify a valid HTML5 document, a visible recipe title, an introduction, ingredient and cooking sections, lists with at least four items each, and an image with `src` and `alt`.
+
+This is a transition from **following instructions** to **implementing requirements**:
+
+| Requirement | HTML representation | What it conveys |
+| --- | --- | --- |
+| Recipe identity | `title` and `h1` | Browser/tab identity vs visible main heading |
+| Introduction | `p` | Introductory prose |
+| Ingredients | `h2` + `ul > li` | A collection of ingredients |
+| Instructions | `h2` + `ol > li` | An ordered procedure |
+| Illustration | `img` with `src`, `alt` | External visual content with a textual alternative |
+
+### 2. `head` and `body` are siblings
+
+The learner initially wrote `<body><head>...</head></body>` and received failed checks for elements that appeared to be present. The corrected structure is:
+
+```html
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Fish Recipe</title>
+  </head>
+  <body>
+    <h1>Fish Recipe</h1>
+  </body>
+</html>
+```
+
+The `head` does not belong inside the `body`. Browsers use HTML parsing and error recovery; a tag's textual presence does not guarantee it becomes the intended DOM node in the intended location. A tester may check structure, not mere substring presence.
+
+This reinforces the earlier lessons: **DOM is what the browser constructs, not necessarily exactly the tree the author imagined from the source text**.
+
+### 3. Why ingredient lists differ from cooking procedures
+
+A recipe typically has two forms of organization:
+
+- `ul` for ingredients: the items usually form a set, not an ordered operation.
+- `ol` for cooking steps: the order typically affects the result.
+
+The `li` items are children of their associated list container, not independent paragraphs. CSS may alter marker appearance later, without changing these semantics.
+
+### 4. A passing source test is not a successful asset request
+
+The original solution included `<img src="abcd.com/fish.jpg" alt="that is fish">` and still passed the exercise checks. The screenshot showed a **broken image icon** and displayed the alternative text. Without a scheme and valid available local file, `abcd.com/fish.jpg` is a relative path; the browser cannot be assumed to retrieve a photo from the domain `abcd.com`.
+
+The locally polished archive uses an externally hosted Wikimedia Commons fish photo and more descriptive `alt` text. Its source/licensing information is recorded in [Lab 03 README](./labs/build-a-recipe-page/README.md). Whether the image is retrievable on the learner's browser must be verified separately.
+
+**Practical distinction:**
+
+```text
+HTML elements present and well arranged
+              ≠
+External image URL resolves and transfers successfully
+              ≠
+Full accessibility and cross-browser acceptance
+```
+
+Diagnose with **Developer Tools → Network** for image status/URL/content type and **Elements** for the actual DOM attributes. This is a useful lesson in not overclaiming automated checks.
+
+### 5. Content quality beyond exact element counts
+
+Four instructions named `cook1`, `cook2`, `cook3`, `cook4` can meet a minimum list length but do not constitute a useful recipe. The edited archive replaces placeholders with meaningful sequential actions and makes ingredients consistent with those actions.
+
+**Engineering lesson:** passing acceptance checks is necessary for the exercise, but a quality page must also communicate real information accurately and intelligibly. The coursework remains an HTML fundamentals task, not proof of a culinary, safety or professional content review.
+
+### 6. Bridge to future CSS
+
+Without custom CSS, the browser's default styles already present `h1`/`h2`, bullet and numbered markers, and images. In later CSS lessons, layout and appearance may change, but **HTML semantics must remain correct**. This separation is the foundation for responsive web design.
 
 ---
 
@@ -210,47 +265,53 @@ The image of a relaxing cat sits *inside* an `a` element, so the image functions
 | Hierarchy | /ˈhaɪə.rɑː.ki/ | Hệ phân cấp |
 | Debugging | /ˌdiːˈbʌɡ.ɪŋ/ | Gỡ lỗi |
 | Syntax | /ˈsɪn.tæks/ | Cú pháp |
-| Semantic | /sɪˈmæn.tɪk/ | Mang ngữ nghĩa |
+| Semantic | /sɪˈmæn.tɪk/ | Ngữ nghĩa |
 | Image | /ˈɪm.ɪdʒ/ | Hình ảnh |
-| Anchor | /ˈæŋ.kə/ | Liên kết neo |
+| Anchor | /ˈæŋ.kə/ | Phần tử neo/liên kết |
 | Alternative text | /ɒlˈtɜː.nə.tɪv tekst/ | Văn bản thay thế |
 | Void element | /vɔɪd ˈel.ɪ.mənt/ | Phần tử rỗng |
 | Document | /ˈdɒk.jə.mənt/ | Tài liệu |
 | Character encoding | /ˈkær.ək.tə ɪnˈkəʊ.dɪŋ/ | Mã hóa ký tự |
-| Section | /ˈsek.ʃən/ | Phần/mục nội dung |
+| Section | /ˈsek.ʃən/ | Mục/phần nội dung |
 | Unordered list | /ʌnˈɔː.dəd lɪst/ | Danh sách không thứ tự |
-| Ordered list | /ˈɔː.dəd lɪst/ | Danh sách có thứ tự |
+| Ordered list | /ˈɔː.dəd lɪst/ | Danh sách theo thứ tự |
 | Figure | /ˈfɪɡ.ə/ | Hình minh họa |
 | Caption | /ˈkæp.ʃən/ | Chú thích |
 | Emphasis | /ˈem.fə.sɪs/ | Sự nhấn mạnh |
+| Recipe | /ˈres.ɪ.pi/ | Công thức nấu ăn |
+| Ingredient | /ɪnˈɡriː.di.ənt/ | Nguyên liệu |
+| Instruction | /ɪnˈstrʌk.ʃən/ | Hướng dẫn |
+| Sequence | /ˈsiː.kwəns/ | Trình tự |
 | Accessibility | /əkˌses.əˈbɪl.ə.ti/ | Khả năng tiếp cận |
 | Browser | /ˈbraʊ.zə/ | Trình duyệt |
 
 ## Cross-lesson self-assessment — answer independently
 
 1. **Remember:** Explain the difference between an opening tag and an HTML element.
-2. **Understand:** Why does `h1` normally appear larger than plain text even without authored CSS?
-3. **Analyze:** Why might `<heading2>About</heading2>` display text but not act as an `h2`?
+2. **Understand:** Why does a heading appear bold/larger than raw text without authored CSS?
+3. **Analyze:** Why might `<heading2>About</heading2>` render but not behave semantically like `h2`?
 4. **Apply:** Correct `<img href="photo.jpg" att="River mouth"></img>`.
-5. **Understand:** How does an `img` element become linked content when placed inside `a`?
-6. **Analyze:** An anchor has `href="/stations"` but clicking returns HTTP 404. Does that prove a markup error?
+5. **Understand:** How does an `img` become a clickable image when nested within `a`?
+6. **Analyze:** An anchor has `href="/stations"` but returns HTTP 404. Is the HTML necessarily wrong?
 7. **Understand:** Distinguish `lang="en"` from `meta charset="UTF-8"`.
-8. **Apply:** Explain when `ul`, `ol` and `li` should be used in a coastal survey procedure versus equipment inventory.
-9. **Analyze:** What is the relation between `figure`, `img`, `figcaption`, `em` and `strong`?
-10. **Evaluate — extension:** Should an external link always open with `target="_blank"`? Explain your criteria.
-11. **Evaluate — extension:** What can a successful freeCodeCamp challenge verify, and which quality dimensions need more evidence?
-12. **Create — extension:** Design an HTML-only coastal-monitoring page with a title, two semantic sections, an equipment list, an ordered field procedure, an annotated image and a footer.
+8. **Apply:** Explain when `ul`, `ol` and `li` should be used in a coastal survey procedure vs an equipment inventory.
+9. **Analyze:** Explain the relationship between `figure`, `img`, `figcaption`, `em` and `strong`.
+10. **Evaluate — extension:** Is `target="_blank"` appropriate for every external link? Why or why not?
+11. **Analyze:** Why does `<body><head>...</head></body>` create unexpected freeCodeCamp structural failures?
+12. **Evaluate:** Why could the original recipe receive **100%** while its fish image was broken?
+13. **Create:** Design a short HTML-only engineering procedure with an inventory, ordered steps, source-attributed image and descriptive `alt`.
+14. **Evaluate — extension:** Which observations would you need to make before claiming a page is accessible and cross-browser compatible?
 
-Answers are deliberately not supplied. Detailed questions for Workshop 02 are in [its REVIEW.md](./workshops/build-a-cat-photo-app/REVIEW.md).
+Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md).
 
 ---
 
 ## Future topics — not yet completed
 
-- **More HTML:** forms, labels, input controls, tables, navigation landmarks and deeper accessibility.
-- **CSS basics:** rules, selectors, specificity, inheritance, cascade, color, typography and box model.
+- **Further HTML:** form controls, labels, validation, tables, navigation landmarks and accessibility.
+- **CSS basics:** rules, selectors, specificity, inheritance, cascade, color, typography and the box model.
 - **CSS layout:** dimensions, Flexbox, Grid, positioning, overflow, media queries and mobile-first design.
-- **Visual behavior:** pseudo-classes, pseudo-elements, CSS custom properties, transitions, transforms and animations.
+- **Visual behavior:** pseudo-classes, pseudo-elements, CSS variables, transitions, transforms and animations.
 - **Project quality:** keyboard checks, responsive inspection, cross-browser behavior and certification projects.
 
-**Maintenance principle:** update the individual activity notes and the cumulative review from *completed* work, while separating practiced facts, explanation, optional extensions and future subjects. The learning documents do not need completion dates or auxiliary test scripts.
+**Maintenance:** keep the cumulative review grounded in completed work, separating what was practiced, technically explained, introduced as an extension and not yet studied. Do not add completion dates, Python tests or repository-update scripts.
