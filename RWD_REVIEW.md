@@ -1,6 +1,6 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — Workshop 01, Labs 01–03 and Workshop 02 documented.
+> **Status:** In progress — Workshops 01–03 and Labs 01–03 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
 > **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
@@ -28,10 +28,11 @@ For every concept, ask:
 | 03 | Images, anchor links and attributes | Practiced / explained | [Lab 02](./labs/debug-pet-adoption-page/) |
 | 04 | Document structure, semantic sections, lists, figures, captions and metadata | Practiced / explained | [Workshop 02](./workshops/build-a-cat-photo-app/), **42/42 steps** |
 | 05 | Recipe page: independent user stories, `head`/`body`, ingredient and procedure lists, image behavior | Practiced / explained | [Lab 03](./labs/build-a-recipe-page/), original submission **100%** |
-| 06 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
-| 07 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 08 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 09 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 06 | Generic `div` containers, repeated classes, unique IDs and grouped buttons | Practiced / explained | [Workshop 03](./workshops/build-a-bookstore-page/), **19/19 steps** |
+| 07 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 08 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 09 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 10 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -253,6 +254,54 @@ Without custom CSS, the browser's default styles already present `h1`/`h2`, bull
 
 ---
 
+## Part 06 — Bookstore Workshop: `div`, `class`, `id`, grouping and buttons
+
+**Evidence:** [Workshop 03 — Build a Bookstore Page](./workshops/build-a-bookstore-page/) was accepted by freeCodeCamp at **19/19 steps (100%)**, according to the learner's final screenshot. The archived `index.html` preserves the learner's source content and structure, with only whitespace normalization.
+
+### 1. The next structural idea: grouping beyond headings and lists
+
+The page uses `<div class="card-container">` to contain **two** `<div class="card">` children. Each child has a unique `id`, a book-title `h2`, a descriptive paragraph and a `button` labeled "Buy Now". A second `<div class="btn-container">` groups "View Cart" and "Checkout".
+
+The `div` element has **no intrinsic book, product or commerce semantics**. Its purpose here is neutral grouping. The words `card` and `btn-container` are human-authored class values, not built-in browser layout features.
+
+### 2. Different roles for `class` and `id`
+
+| Source | Actual purpose | Reuse expectation |
+| --- | --- | --- |
+| `class="card"` | Identifies both book-card elements as a group | Shared on multiple elements |
+| `class="btn"` | Groups all four buttons | Shared on multiple elements |
+| `id="sally-adventure-book"` | Distinguishes Sally's book | Unique per document |
+| `id="dave-cooking-book"` | Distinguishes Dave's book | Unique per document |
+| `id="view-cart-btn"` | Distinguishes the cart button | Unique per document |
+| `id="checkout-btn"` | Distinguishes the checkout button | Unique per document |
+
+A class may contain several whitespace-separated tokens. An ID is intended to identify exactly one element. A future CSS selector `.btn` targets the class, while `#checkout-btn` targets the ID. These selectors are **extensions**, because the submitted workshop contains no CSS.
+
+### 3. Nested DOM structure determines ownership
+
+The two book cards are siblings inside `.card-container`, **not** nested inside each other. Their `h2`, `p` and `button` descendants belong to the relevant card. The final two buttons are in `.btn-container`, outside both book cards. This distinction matters for source reading order, future CSS selectors and event handling.
+
+The page's only `h1` labels the bookstore; each `h2` identifies a book title. A generic wrapper does not replace heading semantics. Inspect the DOM tree rather than inferring structure from indentation alone.
+
+### 4. A clickable element is not a working business feature
+
+A native `button` is keyboard-focusable and has an accessible text label by default. However, the four buttons have **no click logic** in the submitted HTML. `Buy Now`, `View Cart` and `Checkout` are labels, not evidence of working purchases, cart state or payment processing. This reinforces the Lab 03 lesson: **passing a source checker does not prove that an external or interactive feature actually works**.
+
+### 5. Relation to earlier tasks and future CSS
+
+- **Workshop 01:** headings and paragraphs organize text; Workshop 03 groups repeated text into larger components.
+- **Lab 01:** malformed closing tags can change the DOM hierarchy and misplace a book into another card.
+- **Lab 02:** `class` and `id` are attributes like `src` and `href`, but have different meaning.
+- **Workshop 02:** `section`/`main` convey semantics, while `div` provides neutral grouping.
+- **Lab 03:** `ul`/`ol` express list meaning, while `div` does not automatically create a list.
+- **Future CSS/JavaScript:** class/ID selectors can target elements, and event handlers may add behavior; neither is implemented in this workshop.
+
+**Checks still needed outside freeCodeCamp:** independent browser re-open, keyboard Tab order, responsive inspection and accessibility audit. A passing 19/19 screenshot is evidence for this workshop's acceptance tests only.
+
+For British English IPA, detailed diagnostic examples and 20 unanswered questions, see [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md).
+
+---
+
 ## Technical vocabulary — British English IPA
 
 | Term | IPA | Vietnamese |
@@ -284,6 +333,13 @@ Without custom CSS, the browser's default styles already present `h1`/`h2`, bull
 | Sequence | /ˈsiː.kwəns/ | Trình tự |
 | Accessibility | /əkˌses.əˈbɪl.ə.ti/ | Khả năng tiếp cận |
 | Browser | /ˈbraʊ.zə/ | Trình duyệt |
+| Bookstore | /ˈbʊk.stɔː/ | Cửa hàng sách |
+| Container | /kənˈteɪ.nə/ | Vùng chứa |
+| Card | /kɑːd/ | Thẻ nội dung |
+| Class | /klɑːs/ | Nhóm/lớp |
+| Identifier | /aɪˈden.tɪ.faɪ.ə/ | Định danh |
+| Button | /ˈbʌt.ən/ | Nút bấm |
+| Checkout | /ˈtʃek.aʊt/ | Thanh toán |
 
 ## Cross-lesson self-assessment — answer independently
 
@@ -301,8 +357,14 @@ Without custom CSS, the browser's default styles already present `h1`/`h2`, bull
 12. **Evaluate:** Why could the original recipe receive **100%** while its fish image was broken?
 13. **Create:** Design a short HTML-only engineering procedure with an inventory, ordered steps, source-attributed image and descriptive `alt`.
 14. **Evaluate — extension:** Which observations would you need to make before claiming a page is accessible and cross-browser compatible?
+15. **Understand:** Why may both bookstore cards have `class="card"`, but not the same `id`?
+16. **Analyze:** What relationships in the DOM would change if the first book card were missing its closing `</div>`?
+17. **Evaluate:** Why is a `button` labeled "Checkout" not evidence of a working purchase flow?
+18. **Apply:** Design a third card that retains the shared `card` class but has its own ID and heading.
+19. **Compare:** When should a page use `div`, `section`, `article`, `ul` or `ol` rather than treating them as interchangeable?
+20. **Evaluate — extension:** How would you verify correct keyboard focus order in an unstyled bookstore page?
 
-Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md).
+Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md) and [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md).
 
 ---
 
