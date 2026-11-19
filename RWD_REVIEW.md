@@ -1,6 +1,6 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — Workshops 01–03 and Labs 01–03 documented.
+> **Status:** In progress — Workshops 01–03 and Labs 01–04 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
 > **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
@@ -29,10 +29,11 @@ For every concept, ask:
 | 04 | Document structure, semantic sections, lists, figures, captions and metadata | Practiced / explained | [Workshop 02](./workshops/build-a-cat-photo-app/), **42/42 steps** |
 | 05 | Recipe page: independent user stories, `head`/`body`, ingredient and procedure lists, image behavior | Practiced / explained | [Lab 03](./labs/build-a-recipe-page/), original submission **100%** |
 | 06 | Generic `div` containers, repeated classes, unique IDs and grouped buttons | Practiced / explained | [Workshop 03](./workshops/build-a-bookstore-page/), **19/19 steps** |
-| 07 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
-| 08 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 09 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 10 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 07 | Travel agency: description metadata, package links and image/caption nesting | Practiced / explained | [Lab 04](./labs/build-a-travel-agency-page/), original submission **100%** |
+| 08 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 09 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 10 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 11 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -302,6 +303,48 @@ For British English IPA, detailed diagnostic examples and 20 unanswered question
 
 ---
 
+## Part 07 — Travel Agency Lab: metadata, package links and linked figures
+
+**Evidence:** The learner's **original** [Lab 04 — Build a Travel Agency Page](./labs/build-a-travel-agency-page/) passed the freeCodeCamp checker at **100%**, while the Preview showed broken images because the three `img` elements used empty `src` values. The repository archives a **polished version** with source improvements and three working freeCodeCamp CDN URLs; it has **not** been re-submitted to freeCodeCamp.
+
+### 1. New metadata: page description and character encoding serve different roles
+
+Lab 04 required both `<meta charset="UTF-8">` and a separate `<meta name="description" content="...">` inside `head`. The first describes encoding; the second supplies an optional page summary to consumers such as search engines. The `title` is distinct from the on-page `h1` and must meet the lab's specified text.
+
+The description alone is neither a visible paragraph nor proof of search rankings, accessibility or SEO performance. This exercise establishes the **HTML structure** only.
+
+### 2. `ul > li > a`: list structure before link behavior
+
+The two package choices are direct `li` children of `ul`, each with a nested anchor containing exact text **Group Travels** and **Private Tours**. The learner's earlier malformed `<a <li>` attempt made both list structure and link requirements fail; correcting the actual DOM hierarchy resolved the root cause. For this lab, each of the two links must point to `https://www.freecodecamp.org/learn` and use `target="_blank"`.
+
+### 3. `figure > a > img` and sibling `figcaption`
+
+Each itinerary figure has two direct children: the first is `a` containing `img`, and the second is `figcaption` containing visible text. The original attempt used `text="1"` as though it were visible content, but HTML caption text belongs **between** opening and closing tags. A caption inside the anchor does not meet this challenge's required nesting.
+
+| Construct | Question answered | Consequence |
+| --- | --- | --- |
+| `href` | Where does this anchor navigate? | Can be a valid link even when an image is broken |
+| `target="_blank"` | Where should navigation open? | Usually opens a new tab; usability needs independent consideration |
+| `src` | What image should the browser fetch? | Empty or missing resources may show broken-image placeholders |
+| `alt` | What textual alternative conveys the image? | Should describe meaningful visual content, not `img1` |
+| `figcaption` | What visible text accompanies the figure? | Does not replace the image's `alt` requirement |
+
+### 4. Acceptance tests versus real resource requests
+
+The screenshot establishes the original lab's **100% checker result**, not working image downloads. In the polished edition, empty `src` values were replaced with the course's images of the Colosseum, the Alps and the sea, and placeholder captions were replaced with descriptions. These changes were reviewed structurally but were not tested through a new freeCodeCamp submission. Use the browser's **Elements** and **Network** panels to separate source structure from actual resource delivery.
+
+### 5. Relationships to earlier material
+
+- **Lab 02:** the image `src` and anchor `href` attributes are different, even when an image itself is clickable.
+- **Workshop 02:** `figure`, `figcaption` and `target="_blank"` become combined requirements rather than individually guided steps.
+- **Lab 03:** a passing source check can coexist with failed external resources.
+- **Workshop 03:** a generic `div` is neutral grouping; `figure` and `ul` express more specific meaning.
+- **Future work:** richer accessible link naming, keyboard review, verified image availability, responsive image sizing, actual itinerary navigation and booking interactions remain extensions.
+
+For British English IPA, eight diagnostic cases and 24 unanswered questions, see [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md).
+
+---
+
 ## Technical vocabulary — British English IPA
 
 | Term | IPA | Vietnamese |
@@ -340,6 +383,12 @@ For British English IPA, detailed diagnostic examples and 20 unanswered question
 | Identifier | /aɪˈden.tɪ.faɪ.ə/ | Định danh |
 | Button | /ˈbʌt.ən/ | Nút bấm |
 | Checkout | /ˈtʃek.aʊt/ | Thanh toán |
+| Travel agency | /ˈtræv.əl ˈeɪ.dʒən.si/ | Công ty du lịch |
+| Destination | /ˌdes.tɪˈneɪ.ʃən/ | Điểm đến |
+| Itinerary | /aɪˈtɪn.ə.rər.i/ | Lịch trình |
+| Package | /ˈpæk.ɪdʒ/ | Gói du lịch |
+| Metadata | /ˈmet.əˌdeɪ.tə/ | Siêu dữ liệu |
+| Description | /dɪˈskrɪp.ʃən/ | Mô tả |
 
 ## Cross-lesson self-assessment — answer independently
 
@@ -363,8 +412,13 @@ For British English IPA, detailed diagnostic examples and 20 unanswered question
 18. **Apply:** Design a third card that retains the shared `card` class but has its own ID and heading.
 19. **Compare:** When should a page use `div`, `section`, `article`, `ul` or `ol` rather than treating them as interchangeable?
 20. **Evaluate — extension:** How would you verify correct keyboard focus order in an unstyled bookstore page?
+21. **Apply:** Why must the two package choices be `li > a` rather than `a > li`?
+22. **Analyze:** What exact child-order relationship must each itinerary `figure` satisfy?
+23. **Evaluate:** Why could the original Travel Agency Page pass at 100% while all three images appeared broken?
+24. **Understand:** What is the difference between `meta name="description"` and an introductory `p` paragraph?
+25. **Create:** Describe three itinerary images with meaningful `alt` and `figcaption` text, avoiding redundant placeholders.
 
-Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md) and [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md).
+Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md) and [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md).
 
 ---
 
