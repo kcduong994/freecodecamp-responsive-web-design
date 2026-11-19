@@ -1,6 +1,6 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — Workshops 01–04 and Labs 01–04 documented.
+> **Status:** In progress — Workshops 01–05 and Labs 01–04 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
 > **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
@@ -31,10 +31,11 @@ For every concept, ask:
 | 06 | Generic `div` containers, repeated classes, unique IDs and grouped buttons | Practiced / explained | [Workshop 03](./workshops/build-a-bookstore-page/), **19/19 steps** |
 | 07 | Travel agency: description metadata, package links and image/caption nesting | Practiced / explained | [Lab 04](./labs/build-a-travel-agency-page/), original submission **100%** |
 | 08 | HTML audio: native browser controls, Boolean attributes, remote MP3 resources and repeating playback | Practiced / explained | [Workshop 04](./workshops/build-an-html-music-player/), **9/9** steps |
-| 09 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
-| 10 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 11 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 12 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 09 | HTML video: one media element, four alternate sources, MIME hints, poster, muted state and display width | Practiced / explained | [Workshop 05](./workshops/build-an-html-video-player/), **13/13** steps |
+| 10 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 11 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 12 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 13 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -390,6 +391,55 @@ The source retains `meta charset="UTF-8"`, `meta name="viewport" content="width=
 
 ---
 
+## Part 09 — HTML Video Player Workshop: source alternatives and browser playback
+
+**Evidence:** [Workshop 05 — Build an HTML Video Player](./workshops/build-an-html-video-player/) passed the learner's final freeCodeCamp screenshot at **Step 13, 13/13 (100%)**. The archived [index.html](./workshops/build-an-html-video-player/index.html) reproduces the learner's video block and reconstructs the opening HTML5 scaffold from the lesson screenshots.
+
+### 1. Video player versus alternative source candidates
+
+The page contains exactly **one** `video` element with `width="640"`, `loop`, `controls`, `muted`, and a `poster` URL. Four nested void `source` elements provide MP4, WebM, Ogg and QuickTime candidates. The browser selects a suitable resource; **four sources do not render four players and are not a four-item playlist**. The `video` element needs `</video>`, while `<source>` does not have a closing tag.
+
+```html
+<video width="640" loop controls muted
+       poster="https://cdn.freecodecamp.org/curriculum/labs/past-event2.jpg">
+  <source src="https://cdn.freecodecamp.org/curriculum/labs/what-is-the-map-method-and-how-does-it-work.mp4" type="video/mp4">
+  <source src="https://cdn.freecodecamp.org/curriculum/labs/mapmethod.webm" type="video/webm">
+  <source src="https://cdn.freecodecamp.org/curriculum/labs/mapmethod.ogg" type="video/ogg">
+  <source src="https://cdn.freecodecamp.org/curriculum/labs/mapmethod.mov" type="video/quicktime">
+</video>
+```
+
+### 2. Boolean attributes, preview image and width
+
+- **`controls`** asks the browser to provide native media UI; it is not a custom JavaScript player.
+- **`loop`** repeats playback of the selected video after ending; it does **not** imply `autoplay` (which is absent).
+- **`muted`** requests the initial muted state; like other HTML Boolean attributes, `muted="false"` still means present/true.
+- **`poster`** is a separate still-image resource shown before a video frame is available. Successful poster loading does not guarantee playable media.
+- **`width="640"`** is a fixed rendered width; a viewport meta declaration alone is not responsive styling. A max-width CSS adjustment would be a later extension.
+
+### 3. Media format, MIME hint and actual decode support
+
+The MIME values `video/mp4`, `video/webm`, `video/ogg` and `video/quicktime` describe candidate content. Container names and extensions do not guarantee support for the encoded codecs. Modern browsers may choose different candidates depending on their codecs and platform; support for QuickTime/MOV is not universal. **A source test passing does not establish successful HTTP delivery or decoding.**
+
+To debug a blank player or failed playback, inspect the HTML tree, selected media URL (`currentSrc` during debugging), browser **Network** response, media/console diagnostics and UI mute state. Do not assume the browser loads every source in order or that all four are downloaded.
+
+### 4. Relationship to Workshop 04 and future accessibility
+
+| Comparison | Workshop 04 (Audio) | Workshop 05 (Video) |
+| --- | --- | --- |
+| Media context | Three separate `<audio src="...">` players | One `<video>` with four nested `<source>` candidates |
+| Native controls | `controls` | `controls` |
+| Repetition | `loop` | `loop` |
+| New attributes practiced | MP3 `src` | `muted`, `poster`, `width` and explicit MIME `type` |
+| Video alternatives | Not practiced | MP4/WebM/Ogg/MOV candidate selection |
+| Scripted behavior | No custom JS | No custom JS |
+
+**Accessibility extension, not completed exercise:** consider captions via a timed-text resource and `<track>`, a transcript and actual keyboard testing. `h1` and `poster` are not substitutes for video captions. Network availability, cross-browser compatibility and complete accessibility require independent checks.
+
+For British English pronunciation, 30 independent review questions, code comparisons and troubleshooting, see [Workshop 05 REVIEW](./workshops/build-an-html-video-player/REVIEW.md).
+
+---
+
 ## Technical vocabulary — British English IPA
 
 | Term | IPA | Vietnamese |
@@ -441,6 +491,16 @@ The source retains `meta charset="UTF-8"`, `meta name="viewport" content="width=
 | Loop | /luːp/ | Lặp |
 | Boolean | /ˈbuː.li.ən/ | Giá trị logic |
 | Viewport | /ˈvjuː.pɔːt/ | Vùng hiển thị |
+| Video player | /ˈvɪd.i.əʊ ˈpleɪ.ə/ | Trình phát video |
+| Media source | /ˈmiː.di.ə sɔːs/ | Nguồn dữ liệu đa phương tiện |
+| Muted | /ˈmjuː.tɪd/ | Tắt tiếng |
+| Poster | /ˈpəʊ.stə/ | Ảnh xem trước |
+| Codec | /ˈkəʊ.dek/ | Bộ mã hóa/giải mã |
+| MIME type | /maɪm taɪp/ | Kiểu dữ liệu truyền thông |
+| Format | /ˈfɔː.mæt/ | Định dạng |
+| Compatibility | /kəmˌpæt.əˈbɪl.ə.ti/ | Khả năng tương thích |
+| Captions | /ˈkæp.ʃənz/ | Phụ đề chú thích âm thanh |
+| Transcript | /ˈtræn.skrɪpt/ | Bản chép lời |
 
 ## Cross-lesson self-assessment — answer independently
 
@@ -474,8 +534,16 @@ The source retains `meta charset="UTF-8"`, `meta name="viewport" content="width=
 28. **Analyze:** Why can the three audio players play simultaneously in the completed music page?
 29. **Evaluate:** How would you distinguish a missing MP3 resource from an unsupported media format?
 30. **Evaluate:** What does Workshop 04’s 100% result prove, and what does it not prove about audio playback or accessibility?
+31. **Remember:** Which native `<video>` attributes were present in Workshop 05, and which were absent?
+32. **Understand:** Why does one `<video>` with four `<source>` elements render one player rather than four?
+33. **Analyze:** How does `muted` differ from `autoplay`, and why does `muted="false"` not turn muting off?
+34. **Apply:** What specific DevTools evidence would you inspect when a poster appears but playback fails?
+35. **Evaluate:** Why is support for `video/quicktime` not guaranteed by the exercise passing its HTML tests?
+36. **Compare:** Why does the HTML Music Player use three independent media elements but the Video Player uses one element with alternatives?
+37. **Evaluate:** Can `width="640"` plus viewport metadata establish mobile responsiveness? Why or why not?
+38. **Create — extension:** For a coastal field-experiment video, what captions, transcript and descriptive context might be needed beyond this workshop?
 
-Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md), [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md) and [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md).
+Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md), [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md), [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md) and [Workshop 05 REVIEW](./workshops/build-an-html-video-player/REVIEW.md).
 
 ---
 

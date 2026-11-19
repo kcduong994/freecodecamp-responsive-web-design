@@ -30,10 +30,10 @@ The repository emphasizes **HTML/CSS source and documentation**, not auxiliary s
 
 | Area | Progress | Notes |
 | --- | ---: | --- |
-| Workshops | **4 completed** | Build a Curriculum Outline (**11/11**); Build a Cat Photo App (**42/42**); Build a Bookstore Page (**19/19**); Build an HTML Music Player (**9/9**) |
+| Workshops | **5 completed** | Build a Curriculum Outline (**11/11**); Build a Cat Photo App (**42/42**); Build a Bookstore Page (**19/19**); Build an HTML Music Player (**9/9**); Build an HTML Video Player (**13/13**) |
 | Labs | **4 completed** | Debug Camperbot's Profile Page; Debug a Pet Adoption Page; Build a Recipe Page; Build a Travel Agency Page |
 | Certification projects | **0 / 5** | Not started |
-| Cumulative review | **In progress** | [RWD_REVIEW.md](./RWD_REVIEW.md) synthesizes eight practical activities |
+| Cumulative review | **In progress** | [RWD_REVIEW.md](./RWD_REVIEW.md) synthesizes nine practical activities |
 | Final course review | Not complete | Revisit after practical work |
 | Certification exam | Not attempted | Awaiting required coursework |
 | Certificate | Not issued | Record only when earned |
@@ -50,8 +50,9 @@ The repository emphasizes **HTML/CSS source and documentation**, not auxiliary s
 | 06 | Workshop | **Build a Bookstore Page** | Generic `div` grouping; `class` reuse, unique `id`; nested book cards; native buttons vs application behavior | [Open](./workshops/build-a-bookstore-page/) |
 | 07 | Lab | **Build a Travel Agency Page** | SEO description metadata; `ul > li > a`; `figure > a > img` and `figcaption`; exact link attributes; real image requests | [Open](./labs/build-a-travel-agency-page/) |
 | 08 | Workshop | **Build an HTML Music Player** | Native `audio`, `src`, Boolean `controls`/`loop`; MP3 resources, track headings, viewport metadata | [Open](./workshops/build-an-html-music-player/) |
+| 09 | Workshop | **Build an HTML Video Player** | Native `video`; multiple `source` candidates and MIME hints; `controls`, `loop`, `muted`, `poster`, width | [Open](./workshops/build-an-html-video-player/) |
 
-**Evidence boundaries:** the learner's freeCodeCamp screenshots confirm the activities, including Workshop 02 (**42/42**) and the **original Recipe Page submission at 100%**, plus Workshop 03 **19/19 (100%)** and the **original Travel Agency Page at 100%**, plus **Workshop 04 (9/9 steps, 100%)**. The archived Recipe Page and Travel Agency Page sources are **revised editions**; their edited content has not been independently re-tested in freeCodeCamp or in the learner's browser. Code-check success does not establish cross-browser compliance, accessible behavior or resource availability.
+**Evidence boundaries:** the learner's freeCodeCamp screenshots confirm the activities, including Workshop 02 (**42/42**) and the **original Recipe Page submission at 100%**, plus Workshop 03 **19/19 (100%)** and the **original Travel Agency Page at 100%**, plus **Workshop 04 (9/9 steps, 100%)** and **Workshop 05 (13/13 steps, 100%)**. The archived Recipe Page and Travel Agency Page sources are **revised editions**; their edited content has not been independently re-tested in freeCodeCamp or in the learner's browser. Code-check success does not establish cross-browser compliance, accessible behavior or resource availability.
 
 ## Repository structure
 
@@ -73,7 +74,11 @@ freecodecamp-responsive-web-design/
 │   │   ├── index.html
 │   │   ├── README.md
 │   │   └── REVIEW.md
-│   └── build-an-html-music-player/
+│   ├── build-an-html-music-player/
+│   │   ├── index.html
+│   │   ├── README.md
+│   │   └── REVIEW.md
+│   └── build-an-html-video-player/
 │       ├── index.html
 │       ├── README.md
 │       └── REVIEW.md
@@ -122,10 +127,11 @@ The cumulative [RWD_REVIEW.md](./RWD_REVIEW.md) links concepts across lessons, d
 | Bookstore Page | [HTML](./workshops/build-a-bookstore-page/index.html) | [README](./workshops/build-a-bookstore-page/README.md) | [REVIEW](./workshops/build-a-bookstore-page/REVIEW.md) |
 | Travel Agency Page | [HTML](./labs/build-a-travel-agency-page/index.html) | [README](./labs/build-a-travel-agency-page/README.md) | [REVIEW](./labs/build-a-travel-agency-page/REVIEW.md) |
 | HTML Music Player | [HTML](./workshops/build-an-html-music-player/index.html) | [README](./workshops/build-an-html-music-player/README.md) | [REVIEW](./workshops/build-an-html-music-player/REVIEW.md) |
+| HTML Video Player | [HTML](./workshops/build-an-html-video-player/index.html) | [README](./workshops/build-an-html-video-player/README.md) | [REVIEW](./workshops/build-an-html-video-player/REVIEW.md) |
 
 ## View and inspect the work
 
-Open any activity's `index.html` in a browser. No Node.js installation, package manager or local development server is required. Some images and the Music Player audio files are hosted on remote CDNs and therefore require internet access. The Music Player includes three browser-native audio controls with external MP3 sources.
+Open any activity's `index.html` in a browser. No Node.js installation, package manager or local development server is required. Some images, the Music Player audio files, and the Video Player poster/video sources are hosted on remote CDNs and therefore require internet access. The Music Player includes three native audio controls; the Video Player includes one native video player with four alternative sources.
 
 To inspect the source:
 
@@ -135,7 +141,7 @@ To inspect the source:
 4. Check **Developer Tools → Network** when an image fails to load; a syntactically valid `src` can still reference a missing resource.
 5. Do not treat passing an exercise as a full accessibility, responsive-layout or cross-browser audit.
 
-Workshop 02 uses a complete HTML5 document supplied by the lesson. Older Workshop 01 and Lab 01/02 archives include standalone document wrappers added for local viewing; those wrappers are **not** claims that the lessons separately taught boilerplate. Lab 03 directly practiced the document skeleton and revealed the difference between a **100% code-check result** and a **broken image in Preview**. Workshop 03 adds `div` containers, reusable classes, distinct IDs and native buttons; its static HTML does **not** implement cart or payment functionality. Lab 04 extends the earlier image/link lessons with **SEO description metadata**, exactly two package links, and three figures containing linked images and captions. The original Lab 04 passed the checker despite empty image sources; the archived edition uses the freeCodeCamp-provided images and more descriptive content. Workshop 04 uses three separate native `audio` players with `controls` and `loop`; it does not implement playlist coordination or autoplay. Its supplied HTML passed **9/9** steps without custom CSS or JavaScript.
+Workshop 02 uses a complete HTML5 document supplied by the lesson. Older Workshop 01 and Lab 01/02 archives include standalone document wrappers added for local viewing; those wrappers are **not** claims that the lessons separately taught boilerplate. Lab 03 directly practiced the document skeleton and revealed the difference between a **100% code-check result** and a **broken image in Preview**. Workshop 03 adds `div` containers, reusable classes, distinct IDs and native buttons; its static HTML does **not** implement cart or payment functionality. Lab 04 extends the earlier image/link lessons with **SEO description metadata**, exactly two package links, and three figures containing linked images and captions. The original Lab 04 passed the checker despite empty image sources; the archived edition uses the freeCodeCamp-provided images and more descriptive content. Workshop 04 uses three separate native `audio` players with `controls` and `loop`; it does not implement playlist coordination or autoplay. Its supplied HTML passed **9/9** steps without custom CSS or JavaScript. Workshop 05 adds one native `video` with `muted`, `poster`, `width`, and four `source` candidates with MIME hints; the original Step 13 submission passed **13/13**. The local document adds only the previously supplied opening HTML boilerplate missing from the pasted final fragment.
 
 ## Subject roadmap
 
@@ -152,6 +158,7 @@ Workshop 02 uses a complete HTML5 document supplied by the lesson. Older Worksho
 | Native buttons | `button`, shared classes and individual IDs | HTML structure practiced in Workshop 03; dynamic cart/checkout behavior not implemented |
 | Travel descriptions and linked figures | `meta name="description"`, `ul > li > a`, `figure > a > img`, `figcaption` | Practiced in Lab 04; real-world image loading checked separately from source acceptance |
 | HTML audio playback | `audio`, `src`, `controls`, `loop`; supplied `meta viewport` | Practiced in Workshop 04; native controls and online media availability are browser-dependent |
+| HTML video playback | `video`, `source`, `type`, `poster`, `muted`, `width`, `controls`, `loop` | Practiced in Workshop 05; alternative formats and real browser decoding are separate concerns |
 | Further HTML | Forms, labels, tables, expanded accessibility | Planned |
 | CSS fundamentals | Selectors, cascade, colors, typography, box model | Planned |
 | CSS layout and responsive design | Flexbox, Grid, positioning, media queries | Planned |
