@@ -1,6 +1,6 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — Workshops 01–05 and Labs 01–04 documented.
+> **Status:** In progress — Workshops 01–05 and Labs 01–05 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
 > **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
@@ -32,10 +32,11 @@ For every concept, ask:
 | 07 | Travel agency: description metadata, package links and image/caption nesting | Practiced / explained | [Lab 04](./labs/build-a-travel-agency-page/), original submission **100%** |
 | 08 | HTML audio: native browser controls, Boolean attributes, remote MP3 resources and repeating playback | Practiced / explained | [Workshop 04](./workshops/build-an-html-music-player/), **9/9** steps |
 | 09 | HTML video: one media element, four alternate sources, MIME hints, poster, muted state and display width | Practiced / explained | [Workshop 05](./workshops/build-an-html-video-player/), **13/13** steps |
-| 10 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
-| 11 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 12 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 13 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 10 | Combined HTML audio/video: two semantic sections, direct MP4 source, audio URL and resource-loading evidence | Practiced / explained | [Lab 05](./labs/build-an-html-audio-and-video-player/), original submission **18/18 (100%)** |
+| 11 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 12 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 13 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 14 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -440,6 +441,48 @@ For British English pronunciation, 30 independent review questions, code compari
 
 ---
 
+## Part 10 — Audio and Video Lab: combined media, direct URLs and playback evidence
+
+**Practice evidence:** The learner's original HTML passed **18/18 official checks (100%)**. The Preview showed a playable-looking video and an audio player with `0:00 / 0:00`; the original audio source was a relative MP3 path not supplied with the page. The revised archive uses freeCodeCamp's provided MP3 URL and was **not** resubmitted to the official checker.
+
+### 1. The DOM contract and semantic regions
+
+```text
+body
+├── h1 — page title
+├── section
+│   ├── h2 — video title
+│   └── video[controls][width=640]
+│       └── source[src=direct .mp4][type=video/mp4]
+└── section
+    ├── h2 — audio title
+    └── audio[src=direct .mp3][controls][loop]
+```
+
+The two `section` elements represent related but distinct subject areas. They are not interchangeable with `div` when section semantics are intended. Each has its own descriptive `h2`; the page has only one main `h1`.
+
+### 2. A valid URL is not necessarily a media resource
+
+A YouTube `watch?v=...` URL points to a **webpage** rather than the file expected by an HTML video `source`. Declaring `type="video/mp4"` cannot turn that webpage into an MP4. Use a genuine direct media URL; a provider-hosted embedded player generally requires `iframe` and is **not** a substitute for this lab's `<video>` requirement.
+
+A relative audio path such as `whatisthemapmethod.mp3` is valid HTML syntax but requires the corresponding file to exist at the resolved location. The original source met freeCodeCamp's attribute checks yet the screenshot showed no loaded audio duration. This is a useful distinction between **syntax/structure**, **network retrieval**, **decoding**, and **actual playback**.
+
+### 3. Attribute semantics and user experience
+
+| Construct | Behavior | Caveat |
+| --- | --- | --- |
+| `video controls` | Built-in video controls | Browser UI varies |
+| `video width="640"` | Width hint in CSS pixels | Does not guarantee mobile responsiveness |
+| `video > source` | Video candidate with optional MIME hint | MIME declaration is not resource or codec verification |
+| `audio src="...mp3"` | Direct audio resource URL | File must be reachable and decodable |
+| `audio controls loop` | Visible controls; repeat at end | Neither attribute forces autoplay |
+
+**Manual check:** inspect Elements for nesting and Network for response status/type; try playing, pausing and reaching the track's end; inspect keyboard usability and distinguish the structural checker result from live behavior. For accessibility beyond this lab, investigate captions, transcripts and responsive layout. Those are extensions, **not** evidenced as completed here.
+
+See [Lab 05 REVIEW](./labs/build-an-html-audio-and-video-player/REVIEW.md) for bilingual technical vocabulary, diagnostic examples and 28 self-assessment questions.
+
+---
+
 ## Technical vocabulary — British English IPA
 
 | Term | IPA | Vietnamese |
@@ -501,6 +544,9 @@ For British English pronunciation, 30 independent review questions, code compari
 | Compatibility | /kəmˌpæt.əˈbɪl.ə.ti/ | Khả năng tương thích |
 | Captions | /ˈkæp.ʃənz/ | Phụ đề chú thích âm thanh |
 | Transcript | /ˈtræn.skrɪpt/ | Bản chép lời |
+| Direct media URL | /dɪˈrekt ˈmiː.di.ə ˌjuː.ɑːrˈel/ | Đường dẫn trực tiếp đến tài nguyên media |
+| Duration | /djʊəˈreɪ.ʃən/ | Thời lượng phát |
+| Media player | /ˈmiː.di.ə ˈpleɪ.ə/ | Trình phát đa phương tiện |
 
 ## Cross-lesson self-assessment — answer independently
 
@@ -542,6 +588,13 @@ For British English pronunciation, 30 independent review questions, code compari
 36. **Compare:** Why does the HTML Music Player use three independent media elements but the Video Player uses one element with alternatives?
 37. **Evaluate:** Can `width="640"` plus viewport metadata establish mobile responsiveness? Why or why not?
 38. **Create — extension:** For a coastal field-experiment video, what captions, transcript and descriptive context might be needed beyond this workshop?
+39. **Understand:** Why does Lab 05 use two `section` elements rather than two generic `div` elements?
+40. **Analyze:** What is the difference between a YouTube watch-page URL and a direct MP4 URL in a `source` element?
+41. **Evaluate:** What did Lab 05's 18/18 result prove, and what did the audio `0:00 / 0:00` preview leave unresolved?
+42. **Apply:** Write a `video` element with `controls`, `width="640"` and a nested MP4 `source` with the correct MIME type.
+43. **Debug:** How would you distinguish a missing MP3 resource from an unsupported media codec in Developer Tools?
+44. **Compare:** When is `audio[src]` appropriate and when might nested `source` elements be useful?
+45. **Evaluate:** What additional accessibility and mobile-layout work would improve this lab without changing its HTML user-story contract?
 
 Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md), [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md), [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md) and [Workshop 05 REVIEW](./workshops/build-an-html-video-player/REVIEW.md).
 

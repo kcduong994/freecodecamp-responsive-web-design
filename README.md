@@ -31,9 +31,9 @@ The repository emphasizes **HTML/CSS source and documentation**, not auxiliary s
 | Area | Progress | Notes |
 | --- | ---: | --- |
 | Workshops | **5 completed** | Build a Curriculum Outline (**11/11**); Build a Cat Photo App (**42/42**); Build a Bookstore Page (**19/19**); Build an HTML Music Player (**9/9**); Build an HTML Video Player (**13/13**) |
-| Labs | **4 completed** | Debug Camperbot's Profile Page; Debug a Pet Adoption Page; Build a Recipe Page; Build a Travel Agency Page |
+| Labs | **5 completed** | Debug Camperbot's Profile Page; Debug a Pet Adoption Page; Build a Recipe Page; Build a Travel Agency Page; Build an HTML Audio and Video Player (**18/18**) |
 | Certification projects | **0 / 5** | Not started |
-| Cumulative review | **In progress** | [RWD_REVIEW.md](./RWD_REVIEW.md) synthesizes nine practical activities |
+| Cumulative review | **In progress** | [RWD_REVIEW.md](./RWD_REVIEW.md) synthesizes ten practical activities |
 | Final course review | Not complete | Revisit after practical work |
 | Certification exam | Not attempted | Awaiting required coursework |
 | Certificate | Not issued | Record only when earned |
@@ -51,8 +51,11 @@ The repository emphasizes **HTML/CSS source and documentation**, not auxiliary s
 | 07 | Lab | **Build a Travel Agency Page** | SEO description metadata; `ul > li > a`; `figure > a > img` and `figcaption`; exact link attributes; real image requests | [Open](./labs/build-a-travel-agency-page/) |
 | 08 | Workshop | **Build an HTML Music Player** | Native `audio`, `src`, Boolean `controls`/`loop`; MP3 resources, track headings, viewport metadata | [Open](./workshops/build-an-html-music-player/) |
 | 09 | Workshop | **Build an HTML Video Player** | Native `video`; multiple `source` candidates and MIME hints; `controls`, `loop`, `muted`, `poster`, width | [Open](./workshops/build-an-html-video-player/) |
+| 10 | Lab | **Build an HTML Audio and Video Player** | `section` hierarchy; native `video > source` and `audio` playback; direct media URLs and MIME type; code acceptance versus real playback | [Open](./labs/build-an-html-audio-and-video-player/) |
 
 **Evidence boundaries:** the learner's freeCodeCamp screenshots confirm the activities, including Workshop 02 (**42/42**) and the **original Recipe Page submission at 100%**, plus Workshop 03 **19/19 (100%)** and the **original Travel Agency Page at 100%**, plus **Workshop 04 (9/9 steps, 100%)** and **Workshop 05 (13/13 steps, 100%)**. The archived Recipe Page and Travel Agency Page sources are **revised editions**; their edited content has not been independently re-tested in freeCodeCamp or in the learner's browser. Code-check success does not establish cross-browser compliance, accessible behavior or resource availability.
+
+**Lab 05 evidence:** The original HTML Audio and Video Player submission passed **18/18 checks (100%)**. The archived version replaces a relative MP3 path that displayed `0:00 / 0:00` in Preview with the freeCodeCamp-provided MP3 URL. The revised edition has not been independently resubmitted or browser-tested.
 
 ## Repository structure
 
@@ -95,7 +98,11 @@ freecodecamp-responsive-web-design/
 │   │   ├── index.html
 │   │   ├── README.md
 │   │   └── REVIEW.md
-│   └── build-a-travel-agency-page/
+│   ├── build-a-travel-agency-page/
+│   │   ├── index.html
+│   │   ├── README.md
+│   │   └── REVIEW.md
+│   └── build-an-html-audio-and-video-player/
 │       ├── index.html
 │       ├── README.md
 │       └── REVIEW.md
@@ -128,6 +135,7 @@ The cumulative [RWD_REVIEW.md](./RWD_REVIEW.md) links concepts across lessons, d
 | Travel Agency Page | [HTML](./labs/build-a-travel-agency-page/index.html) | [README](./labs/build-a-travel-agency-page/README.md) | [REVIEW](./labs/build-a-travel-agency-page/REVIEW.md) |
 | HTML Music Player | [HTML](./workshops/build-an-html-music-player/index.html) | [README](./workshops/build-an-html-music-player/README.md) | [REVIEW](./workshops/build-an-html-music-player/REVIEW.md) |
 | HTML Video Player | [HTML](./workshops/build-an-html-video-player/index.html) | [README](./workshops/build-an-html-video-player/README.md) | [REVIEW](./workshops/build-an-html-video-player/REVIEW.md) |
+| HTML Audio and Video Lab | [HTML](./labs/build-an-html-audio-and-video-player/index.html) | [README](./labs/build-an-html-audio-and-video-player/README.md) | [REVIEW](./labs/build-an-html-audio-and-video-player/REVIEW.md) |
 
 ## View and inspect the work
 
@@ -142,6 +150,8 @@ To inspect the source:
 5. Do not treat passing an exercise as a full accessibility, responsive-layout or cross-browser audit.
 
 Workshop 02 uses a complete HTML5 document supplied by the lesson. Older Workshop 01 and Lab 01/02 archives include standalone document wrappers added for local viewing; those wrappers are **not** claims that the lessons separately taught boilerplate. Lab 03 directly practiced the document skeleton and revealed the difference between a **100% code-check result** and a **broken image in Preview**. Workshop 03 adds `div` containers, reusable classes, distinct IDs and native buttons; its static HTML does **not** implement cart or payment functionality. Lab 04 extends the earlier image/link lessons with **SEO description metadata**, exactly two package links, and three figures containing linked images and captions. The original Lab 04 passed the checker despite empty image sources; the archived edition uses the freeCodeCamp-provided images and more descriptive content. Workshop 04 uses three separate native `audio` players with `controls` and `loop`; it does not implement playlist coordination or autoplay. Its supplied HTML passed **9/9** steps without custom CSS or JavaScript. Workshop 05 adds one native `video` with `muted`, `poster`, `width`, and four `source` candidates with MIME hints; the original Step 13 submission passed **13/13**. The local document adds only the previously supplied opening HTML boilerplate missing from the pasted final fragment.
+
+**Lab 05 connection:** two semantic media sections combine the earlier audio/video workshop patterns. A passing source checker validates the required HTML structure, but not successful download, playable duration, codec support, captions or mobile layout. See the [Lab 05 review](./labs/build-an-html-audio-and-video-player/REVIEW.md).
 
 ## Subject roadmap
 
@@ -159,6 +169,7 @@ Workshop 02 uses a complete HTML5 document supplied by the lesson. Older Worksho
 | Travel descriptions and linked figures | `meta name="description"`, `ul > li > a`, `figure > a > img`, `figcaption` | Practiced in Lab 04; real-world image loading checked separately from source acceptance |
 | HTML audio playback | `audio`, `src`, `controls`, `loop`; supplied `meta viewport` | Practiced in Workshop 04; native controls and online media availability are browser-dependent |
 | HTML video playback | `video`, `source`, `type`, `poster`, `muted`, `width`, `controls`, `loop` | Practiced in Workshop 05; alternative formats and real browser decoding are separate concerns |
+| Combined audio/video playback | Two `section` elements; `video > source` and `audio[src]`; remote media URL debugging | Practiced in Lab 05; original submission passed 18/18 while audio remained unverified |
 | Further HTML | Forms, labels, tables, expanded accessibility | Planned |
 | CSS fundamentals | Selectors, cascade, colors, typography, box model | Planned |
 | CSS layout and responsive design | Flexbox, Grid, positioning, media queries | Planned |
