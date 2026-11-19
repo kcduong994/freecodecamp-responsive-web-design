@@ -1,6 +1,6 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — Workshops 01–03 and Labs 01–04 documented.
+> **Status:** In progress — Workshops 01–04 and Labs 01–04 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
 > **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
@@ -30,10 +30,11 @@ For every concept, ask:
 | 05 | Recipe page: independent user stories, `head`/`body`, ingredient and procedure lists, image behavior | Practiced / explained | [Lab 03](./labs/build-a-recipe-page/), original submission **100%** |
 | 06 | Generic `div` containers, repeated classes, unique IDs and grouped buttons | Practiced / explained | [Workshop 03](./workshops/build-a-bookstore-page/), **19/19 steps** |
 | 07 | Travel agency: description metadata, package links and image/caption nesting | Practiced / explained | [Lab 04](./labs/build-a-travel-agency-page/), original submission **100%** |
-| 08 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
-| 09 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 10 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 11 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 08 | HTML audio: native browser controls, Boolean attributes, remote MP3 resources and repeating playback | Practiced / explained | [Workshop 04](./workshops/build-an-html-music-player/), **9/9** steps |
+| 09 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 10 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 11 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 12 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -345,6 +346,50 @@ For British English IPA, eight diagnostic cases and 24 unanswered questions, see
 
 ---
 
+## Part 08 — HTML Music Player Workshop: native audio and playback controls
+
+**Evidence:** [Workshop 04 — Build an HTML Music Player](./workshops/build-an-html-music-player/) completed **9/9 steps (100%)** in the learner's final screenshot. Its [index.html](./workshops/build-an-html-music-player/index.html) is preserved from the learner's supplied final source, not rewritten as an invented production player.
+
+### 1. Audio as a first-class HTML element
+
+The document has a main heading `freeCodeCamp Tunes`, three track titles (`h2`), three artist paragraphs (`p`), and three separate `audio` elements. Each of the audio elements has an absolute HTTPS MP3 `src` plus `controls` and `loop` Boolean attributes:
+
+```html
+<h2>Scratching the Surface</h2>
+<p>Artist: Quincy Larson</p>
+<audio src="https://cdn.freecodecamp.org/curriculum/js-music-player/scratching-the-surface.mp3" loop controls></audio>
+```
+
+The markup provides native media controls without authored CSS or JavaScript. The `audio` element is **not** void and is explicitly closed with `</audio>`.
+
+### 2. Boolean semantics: `controls` and `loop`
+
+| Attribute | Applied behavior | Important misconception |
+| --- | --- | --- |
+| `src` | Identifies the audio resource | Does not guarantee HTTP success or supported decoding |
+| `controls` | Requests browser-native playback controls | Does not imply autoplay or a universal UI |
+| `loop` | Requests repetition after the media ends | Does not advance to the next track or start immediately |
+
+Boolean HTML attributes are true when present, regardless of a string like `"false"`; omitting the attribute is different from setting `controls="false"`. The original workshop does **not** set `autoplay`, `preload`, an audio codec hint, custom controls, or a JavaScript event handler.
+
+### 3. Each browser player is independent
+
+Because the page contains three independent `audio` elements and no coordination code, two tracks may play simultaneously when the user starts both. The workshop is a basic music *page*, not a full playlist system with "play only one at a time" logic. The browser supplies the native player UI and media event handling.
+
+**Accessibility and user experience:** nearby headings identify tracks visually and structurally, but this does not replace real keyboard and assistive-technology testing. Control affordances may vary by browser. Native controls should not be confused with the inert bookshop buttons in Workshop 03.
+
+### 4. Media URL correctness vs actual playback
+
+The three MP3s are hosted on freeCodeCamp's CDN and are **not** copied into this repository. Browser playback requires compatible audio and successful network delivery. If the element appears but playback fails, inspect **Developer Tools → Network** and device/browser audio settings before assuming an HTML parse error. A passing freeCodeCamp exercise is evidence of that challenge's acceptance, not a universal media availability guarantee.
+
+### 5. The supplied document head and scope
+
+The source retains `meta charset="UTF-8"`, `meta name="viewport" content="width=device-width, initial-scale=1.0"`, the document `title` *Working with the HTML Audio Element*, and `html lang="en"`. Viewport metadata supports mobile viewport handling; it does not itself create a responsive CSS design. The document `title` and the visible `h1` can legitimately differ.
+
+**Connections:** `h1`/`h2`/`p` hierarchy (Workshop 01), complete HTML boilerplate (Workshop 02), external `src` resources (Lab 02 and Lab 04), and native control versus missing application logic (Workshop 03). [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md) contains debugging cases, British English IPA and **26 unanswered questions**.
+
+---
+
 ## Technical vocabulary — British English IPA
 
 | Term | IPA | Vietnamese |
@@ -389,6 +434,13 @@ For British English IPA, eight diagnostic cases and 24 unanswered questions, see
 | Package | /ˈpæk.ɪdʒ/ | Gói du lịch |
 | Metadata | /ˈmet.əˌdeɪ.tə/ | Siêu dữ liệu |
 | Description | /dɪˈskrɪp.ʃən/ | Mô tả |
+| Music player | /ˈmjuː.zɪk ˈpleɪ.ə/ | Trình phát nhạc |
+| Audio | /ˈɔː.di.əʊ/ | Âm thanh |
+| Playback | /ˈpleɪ.bæk/ | Phát nội dung |
+| Track | /træk/ | Bản nhạc |
+| Loop | /luːp/ | Lặp |
+| Boolean | /ˈbuː.li.ən/ | Giá trị logic |
+| Viewport | /ˈvjuː.pɔːt/ | Vùng hiển thị |
 
 ## Cross-lesson self-assessment — answer independently
 
@@ -417,8 +469,13 @@ For British English IPA, eight diagnostic cases and 24 unanswered questions, see
 23. **Evaluate:** Why could the original Travel Agency Page pass at 100% while all three images appeared broken?
 24. **Understand:** What is the difference between `meta name="description"` and an introductory `p` paragraph?
 25. **Create:** Describe three itinerary images with meaningful `alt` and `figcaption` text, avoiding redundant placeholders.
+26. **Understand:** Why is `loop` not equivalent to `autoplay` in Workshop 04?
+27. **Apply:** How would you turn the same MP3 URL into native browser audio controls using HTML only?
+28. **Analyze:** Why can the three audio players play simultaneously in the completed music page?
+29. **Evaluate:** How would you distinguish a missing MP3 resource from an unsupported media format?
+30. **Evaluate:** What does Workshop 04’s 100% result prove, and what does it not prove about audio playback or accessibility?
 
-Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md) and [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md).
+Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md), [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md) and [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md).
 
 ---
 
