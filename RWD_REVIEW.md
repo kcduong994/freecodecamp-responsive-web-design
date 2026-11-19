@@ -1,6 +1,6 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — Workshops 01–05 and Labs 01–05 documented.
+> **Status:** In progress — Workshops 01–06 and Labs 01–05 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
 > **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
@@ -33,10 +33,11 @@ For every concept, ask:
 | 08 | HTML audio: native browser controls, Boolean attributes, remote MP3 resources and repeating playback | Practiced / explained | [Workshop 04](./workshops/build-an-html-music-player/), **9/9** steps |
 | 09 | HTML video: one media element, four alternate sources, MIME hints, poster, muted state and display width | Practiced / explained | [Workshop 05](./workshops/build-an-html-video-player/), **13/13** steps |
 | 10 | Combined HTML audio/video: two semantic sections, direct MP4 source, audio URL and resource-loading evidence | Practiced / explained | [Lab 05](./labs/build-an-html-audio-and-video-player/), original submission **18/18 (100%)** |
-| 11 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
-| 12 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 13 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 14 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 11 | Inline SVG heart: `svg`, `path`, `d`, 24×24 `viewBox`, and red `fill` | Practised / explained | [Workshop 06](./workshops/build-a-heart-icon/), **6/6 (100%)** |
+| 12 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 13 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 14 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 15 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -483,6 +484,24 @@ See [Lab 05 REVIEW](./labs/build-an-html-audio-and-video-player/REVIEW.md) for b
 
 ---
 
+## Part 11 — Inline SVG and the Heart Icon Workshop
+
+**Evidence:** the learner's Step 6 freeCodeCamp screenshot confirms **6/6 (100%)** for the SVG heart markup.
+
+### Structure and geometry
+
+The `<svg>` element creates an inline vector drawing. Its `width="24"` and `height="24"` specify the visible drawing size, while `viewBox="0 0 24 24"` maps an internal coordinate system from (0, 0) to (24, 24). The `<path>` child stores shape instructions in its `d` attribute. The workshop uses `fill="red"` on the parent, inherited by the heart path. A filled shape does not imply a filled rectangular background.
+
+### Browser behaviour and boundaries
+
+This SVG is part of the HTML document, not an externally downloaded image. Its visual dimensions are distinct from the coordinate system, and resizing the SVG does not automatically guarantee accessible or responsive design. The workshop implements a decorative static heart; it is not a "like" button and has no JavaScript actions. An accessible name for meaningful icons and `aria-hidden="true"` for purely decorative icons are extensions to consider according to context.
+
+### Relating this to previous lessons
+
+Unlike `<img src="...">`, the SVG path does not require an image URL. Unlike the `<video>` and `<audio>` resources, it is vector drawing data rather than playable media. `fill` is a presentation property, distinct from the link `href` and media `src` attributes. See [Workshop 06 REVIEW](./workshops/build-a-heart-icon/REVIEW.md) for examples, pronunciation and self-assessment questions.
+
+---
+
 ## Technical vocabulary — British English IPA
 
 | Term | IPA | Vietnamese |
@@ -547,6 +566,12 @@ See [Lab 05 REVIEW](./labs/build-an-html-audio-and-video-player/REVIEW.md) for b
 | Direct media URL | /dɪˈrekt ˈmiː.di.ə ˌjuː.ɑːrˈel/ | Đường dẫn trực tiếp đến tài nguyên media |
 | Duration | /djʊəˈreɪ.ʃən/ | Thời lượng phát |
 | Media player | /ˈmiː.di.ə ˈpleɪ.ə/ | Trình phát đa phương tiện |
+| Vector graphics | /ˈvek.tə ˈɡræf.ɪks/ | Đồ họa vector |
+| Scalable | /ˈskeɪ.lə.bəl/ | Có thể mở rộng tỷ lệ |
+| Heart icon | /hɑːt ˈaɪ.kɒn/ | Biểu tượng trái tim |
+| Coordinate | /kəʊˈɔː.dɪ.nət/ | Tọa độ |
+| Path | /pɑːθ/ | Đường hình học |
+| Fill | /fɪl/ | Màu tô |
 
 ## Cross-lesson self-assessment — answer independently
 
@@ -595,8 +620,13 @@ See [Lab 05 REVIEW](./labs/build-an-html-audio-and-video-player/REVIEW.md) for b
 43. **Debug:** How would you distinguish a missing MP3 resource from an unsupported media codec in Developer Tools?
 44. **Compare:** When is `audio[src]` appropriate and when might nested `source` elements be useful?
 45. **Evaluate:** What additional accessibility and mobile-layout work would improve this lab without changing its HTML user-story contract?
+46. **Understand:** Explain the difference between SVG dimensions and viewBox coordinates.
+47. **Analyse:** Why can inline SVG render a heart without an image URL?
+48. **Apply:** How would you change the heart colour from red to blue?
+49. **Debug:** How would you investigate an incorrect heart outline caused by the path data?
+50. **Evaluate — extension:** When should an SVG icon receive an accessible name, and when is it decorative?
 
-Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md), [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md), [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md) and [Workshop 05 REVIEW](./workshops/build-an-html-video-player/REVIEW.md).
+Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md), [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md), [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md) and [Workshop 05 REVIEW](./workshops/build-an-html-video-player/REVIEW.md), plus [Workshop 06 REVIEW](./workshops/build-a-heart-icon/REVIEW.md).
 
 ---
 
