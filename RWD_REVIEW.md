@@ -1,6 +1,6 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — Workshops 01–06 and Labs 01–05 documented.
+> **Status:** In progress — Workshops 01–07 and Labs 01–05 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
 > **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
@@ -34,10 +34,11 @@ For every concept, ask:
 | 09 | HTML video: one media element, four alternate sources, MIME hints, poster, muted state and display width | Practiced / explained | [Workshop 05](./workshops/build-an-html-video-player/), **13/13** steps |
 | 10 | Combined HTML audio/video: two semantic sections, direct MP4 source, audio URL and resource-loading evidence | Practiced / explained | [Lab 05](./labs/build-an-html-audio-and-video-player/), original submission **18/18 (100%)** |
 | 11 | Inline SVG heart: `svg`, `path`, `d`, 24×24 `viewBox`, and red `fill` | Practised / explained | [Workshop 06](./workshops/build-a-heart-icon/), **6/6 (100%)** |
-| 12 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
-| 13 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 14 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 15 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 12 | Iframe video embedding: browsing contexts, `/embed/` URLs, permission policy, referrer policy, fullscreen | Practised / explained | [Workshop 07](./workshops/build-a-video-display-using-iframe/), **7/7 steps** |
+| 13 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 14 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 15 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 16 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -502,6 +503,22 @@ Unlike `<img src="...">`, the SVG path does not require an image URL. Unlike the
 
 ---
 
+## Part 12 — Third-party video embedding with iframe
+
+[Workshop 07 — Build a Video Display Using iframe](./workshops/build-a-video-display-using-iframe/) introduces the distinction between embedding another web **document** and loading a media **file**. The learner's final code uses a 560×315 `iframe` and YouTube's `/embed/I0_951_MPE0` endpoint; the surrounding page has its own title and `h1`.
+
+| Earlier source constructs | Workshop 07 distinction |
+| --- | --- |
+| `<video><source src="file.mp4" type="video/mp4"></video>` | The browser's native video element loads a video resource. |
+| `<iframe src="https://www.youtube.com/embed/I0_951_MPE0"></iframe>` | A separate cross-origin YouTube document loads its own player. |
+| `controls`, `loop`, `muted` on media elements | An iframe instead has a permissions-policy `allow` attribute and the embedded provider's UI. |
+| A local or CDN media URL | A third-party embed URL may impose cookies, origin restrictions and network availability constraints. |
+
+The fixed `width` and `height` determine a 16:9 viewport but do not make the page responsive. `allowfullscreen` permits fullscreen where supported, whereas `referrerpolicy="strict-origin-when-cross-origin"` limits referrer information; it does not disable third-party scripts or tracking. A normal YouTube watch page is not a direct MP4 URL. **Extension:** add an accessible iframe `title`, semicolon-separated feature directives in `allow`, and responsive CSS as appropriate. Those changes are not part of the archived accepted submission.
+
+**Evidence boundary:** the learner completed the freeCodeCamp seven-step workshop, but source acceptance does not prove cross-browser playback, accessible keyboard operation, fullscreen behavior or mobile layout.
+
+---
 ## Technical vocabulary — British English IPA
 
 | Term | IPA | Vietnamese |
@@ -572,6 +589,11 @@ Unlike `<img src="...">`, the SVG path does not require an image URL. Unlike the
 | Coordinate | /kəʊˈɔː.dɪ.nət/ | Tọa độ |
 | Path | /pɑːθ/ | Đường hình học |
 | Fill | /fɪl/ | Màu tô |
+| Inline frame | /ˈɪn.laɪn freɪm/ | Khung nội tuyến |
+| Embed | /ɪmˈbed/ | Nhúng nội dung |
+| Referrer | /rɪˈfɜː.rə/ | Nguồn giới thiệu/yêu cầu |
+| Fullscreen | /ˈfʊl.skriːn/ | Toàn màn hình |
+| Cross-origin | /ˌkrɒs ˈɒr.ɪ.dʒɪn/ | Khác nguồn gốc |
 
 ## Cross-lesson self-assessment — answer independently
 
@@ -626,7 +648,15 @@ Unlike `<img src="...">`, the SVG path does not require an image URL. Unlike the
 49. **Debug:** How would you investigate an incorrect heart outline caused by the path data?
 50. **Evaluate — extension:** When should an SVG icon receive an accessible name, and when is it decorative?
 
-Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md), [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md), [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md) and [Workshop 05 REVIEW](./workshops/build-an-html-video-player/REVIEW.md), plus [Workshop 06 REVIEW](./workshops/build-a-heart-icon/REVIEW.md).
+51. **Understand:** Why does an iframe embed another HTML document rather than a direct MP4 resource?
+52. **Apply:** Rewrite a YouTube watch URL into its supported `/embed/VIDEO_ID` form.
+53. **Analyze:** Explain the difference between `allowfullscreen` and `allow="autoplay"`.
+54. **Evaluate:** Does `referrerpolicy="strict-origin-when-cross-origin"` block third-party cookies or all tracking?
+55. **Debug:** What would you inspect if the iframe appears but playback fails?
+56. **Apply — extension:** How could a meaningful iframe `title` improve accessibility?
+57. **Compare:** What differences in browser control and network requests arise between native `video` and a third-party iframe?
+58. **Create — extension:** Design a responsive iframe video panel for a coastal field-monitoring training site.
+Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md), [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md), [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md) and [Workshop 05 REVIEW](./workshops/build-an-html-video-player/REVIEW.md), plus [Workshop 06 REVIEW](./workshops/build-a-heart-icon/REVIEW.md) and [Workshop 07 REVIEW](./workshops/build-a-video-display-using-iframe/REVIEW.md).
 
 ---
 
