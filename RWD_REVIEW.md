@@ -1,6 +1,6 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — Workshops 01–07 and Labs 01–05 documented.
+> **Status:** In progress — Workshops 01–07 and Labs 01–06 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
 > **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
@@ -35,10 +35,11 @@ For every concept, ask:
 | 10 | Combined HTML audio/video: two semantic sections, direct MP4 source, audio URL and resource-loading evidence | Practiced / explained | [Lab 05](./labs/build-an-html-audio-and-video-player/), original submission **18/18 (100%)** |
 | 11 | Inline SVG heart: `svg`, `path`, `d`, 24×24 `viewBox`, and red `fill` | Practised / explained | [Workshop 06](./workshops/build-a-heart-icon/), **6/6 (100%)** |
 | 12 | Iframe video embedding: browsing contexts, `/embed/` URLs, permission policy, referrer policy, fullscreen | Practised / explained | [Workshop 07](./workshops/build-a-video-display-using-iframe/), **7/7 steps** |
-| 13 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
-| 14 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 15 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 16 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 13 | Video compilation: direct child relationships, three ordered `h2` → `p` → `iframe` sections, iframe titles and embed URLs | Practised / explained | [Lab 06](./labs/build-a-video-compilation-page/), completion marker; archived HTML reconstructed |
+| 14 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 15 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 16 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 17 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -656,7 +657,36 @@ The fixed `width` and `height` determine a 16:9 viewport but do not make the pag
 56. **Apply — extension:** How could a meaningful iframe `title` improve accessibility?
 57. **Compare:** What differences in browser control and network requests arise between native `video` and a third-party iframe?
 58. **Create — extension:** Design a responsive iframe video panel for a coastal field-monitoring training site.
+59. **Understand:** Why must Lab 06 use `main` as the sole direct `body` child?
+60. **Debug:** What if an iframe is nested inside a wrapper rather than directly inside its section?
+61. **Compare:** Why are iframe `title` and section `h2` both useful?
+62. **Apply:** Turn a YouTube watch URL into an embed URL.
+63. **Evaluate:** What does the dashboard completion marker demonstrate without the original submitted HTML?
 Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md), [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md), [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md) and [Workshop 05 REVIEW](./workshops/build-an-html-video-player/REVIEW.md), plus [Workshop 06 REVIEW](./workshops/build-a-heart-icon/REVIEW.md) and [Workshop 07 REVIEW](./workshops/build-a-video-display-using-iframe/REVIEW.md).
+
+---
+
+## Part 13 — Video Compilation Lab: `main`, ordered sections and accessible embeds
+
+**Evidence:** The learner's curriculum screenshot marks [Lab 06 — Build a Video Compilation Page](./labs/build-a-video-compilation-page/) completed. Because the original submitted HTML was not supplied, the source in this repository is a **reconstructed example**, not a claim that the archived file itself passed all 20 freeCodeCamp checks.
+
+### 1. Direct-child relationships are part of the acceptance contract
+
+The exercise demands one `main` as the only direct element child of `body`. Within it, the `h1` and introductory paragraph precede three `section` siblings. Each section has exactly the first three children `h2`, `p` and `iframe` in that order. This requirement concerns the **DOM tree**, not visual appearance or indentation.
+
+A common failure is inserting a `header` as a sibling of `main`, placing an `iframe` inside another wrapper, or moving the description before `h2`. Inspect **Developer Tools → Elements** and count the direct children rather than inferring them from the Preview.
+
+### 2. Three independently identified embedded browsing contexts
+
+Unlike the previous workshop's single iframe, the new lab embeds three videos with separate descriptive `title` values, plus `src`, `height` and `width`. The `title` identifies an iframe to assistive technology; it does not replace its surrounding `h2` text. An HTTPS YouTube URL using `/embed/VIDEO_ID` is appropriate for an iframe; a YouTube `/watch?v=` page is not interchangeable with a direct media URL used by `video > source`.
+
+The example adds `loading="lazy"`, `referrerpolicy` and `allowfullscreen` as optional enhancements. These do not replace any required attribute, and their presence does not ensure successful network access or mobile responsiveness.
+
+### 3. Validation, loading and responsive limits
+
+The 20 user stories verify document structure, content ordering, iframe URLs and metadata. Even if the source checker passes, embedded players may still fail because of network restrictions, permissions, third-party cookies, regional availability or provider settings. Fixed dimensions such as `width="560" height="315"` may overflow narrow viewports until responsive CSS is introduced in later units.
+
+**Evidence discipline:** the dashboard completion marker confirms the learning activity was recorded as complete. It does not reveal the exact HTML originally submitted. This locally reconstructed example must be treated separately from that evidence. The [Lab 06 REVIEW](./labs/build-a-video-compilation-page/REVIEW.md) supplies British English IPA, failure cases and twenty unanswered questions.
 
 ---
 
