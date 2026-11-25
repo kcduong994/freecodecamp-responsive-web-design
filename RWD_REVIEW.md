@@ -1,6 +1,6 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — Workshops 01–07 and Labs 01–06 documented.
+> **Status:** In progress — Workshops 01–08 and Labs 01–06 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
 > **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
@@ -36,10 +36,11 @@ For every concept, ask:
 | 11 | Inline SVG heart: `svg`, `path`, `d`, 24×24 `viewBox`, and red `fill` | Practised / explained | [Workshop 06](./workshops/build-a-heart-icon/), **6/6 (100%)** |
 | 12 | Iframe video embedding: browsing contexts, `/embed/` URLs, permission policy, referrer policy, fullscreen | Practised / explained | [Workshop 07](./workshops/build-a-video-display-using-iframe/), **7/7 steps** |
 | 13 | Video compilation: direct child relationships, three ordered `h2` → `p` → `iframe` sections, iframe titles and embed URLs | Practised / explained | [Lab 06](./labs/build-a-video-compilation-page/), completion marker; archived HTML reconstructed |
-| 14 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
-| 15 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 16 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 17 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 14 | Description lists: `dl`, `dt`, `dd`, paired term/description semantics and browser defaults | Practiced / explained | [Workshop 08](./workshops/build-a-list-of-major-web-browsers/), **7/7 steps (100%)** |
+| 15 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 16 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 17 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 18 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -662,6 +663,13 @@ The fixed `width` and `height` determine a 16:9 viewport but do not make the pag
 61. **Compare:** Why are iframe `title` and section `h2` both useful?
 62. **Apply:** Turn a YouTube watch URL into an embed URL.
 63. **Evaluate:** What does the dashboard completion marker demonstrate without the original submitted HTML?
+64. **Remember:** What do `dl`, `dt` and `dd` represent?
+65. **Compare:** Why are term–description pairs different from `ul > li` and `ol > li`?
+66. **Analyze:** Does browser indentation prove `dd` is nested in `dt`?
+67. **Apply:** Create a description list of three coastal measurements and their SI units.
+68. **Evaluate:** What does the Workshop 08 7/7 screenshot prove, and what remains unverified?
+69. **Debug:** How would you inspect the parsed DOM when a `dt` or `dd` closing tag is misplaced?
+
 Answers are intentionally not supplied. Exercise-specific questions are preserved in each activity's `REVIEW.md`, including [Lab 03 REVIEW](./labs/build-a-recipe-page/REVIEW.md), [Workshop 03 REVIEW](./workshops/build-a-bookstore-page/REVIEW.md), [Lab 04 REVIEW](./labs/build-a-travel-agency-page/REVIEW.md), [Workshop 04 REVIEW](./workshops/build-an-html-music-player/REVIEW.md) and [Workshop 05 REVIEW](./workshops/build-an-html-video-player/REVIEW.md), plus [Workshop 06 REVIEW](./workshops/build-a-heart-icon/REVIEW.md) and [Workshop 07 REVIEW](./workshops/build-a-video-display-using-iframe/REVIEW.md).
 
 ---
@@ -687,6 +695,24 @@ The example adds `loading="lazy"`, `referrerpolicy` and `allowfullscreen` as opt
 The 20 user stories verify document structure, content ordering, iframe URLs and metadata. Even if the source checker passes, embedded players may still fail because of network restrictions, permissions, third-party cookies, regional availability or provider settings. Fixed dimensions such as `width="560" height="315"` may overflow narrow viewports until responsive CSS is introduced in later units.
 
 **Evidence discipline:** the dashboard completion marker confirms the learning activity was recorded as complete. It does not reveal the exact HTML originally submitted. This locally reconstructed example must be treated separately from that evidence. The [Lab 06 REVIEW](./labs/build-a-video-compilation-page/REVIEW.md) supplies British English IPA, failure cases and twenty unanswered questions.
+
+---
+
+## Part 14 — Major Web Browsers Workshop: `dl`, `dt` and `dd`
+
+**Evidence:** The learner's Step 7 screenshot confirms Build a List of Major Web Browsers passed freeCodeCamp at **7/7 steps (100%)**. The archive reproduces their submitted HTML; no external historical fact-check or cross-browser audit was performed.
+
+### Description list semantics
+
+The page contains a single `dl`, holding five ordered term-and-description pairs as sibling `dt` and `dd` elements. Unlike `ul > li` or `ol > li`, this structure expresses **associations** rather than unordered items or procedural sequence. The browser's default `dd` indentation is a style, not a nesting relationship.
+
+### Validation and practical interpretation
+
+`dt` labels a browser; `dd` explains it. `title` in `head` is document metadata while `h1` in `body` is the visible main heading. There is no CSS, JavaScript, browser ranking or external asset. A 100% workshop check verifies lesson acceptance, not a screen-reader audit, historical accuracy of browser release years or cross-device quality.
+
+**Engineering transfer:** A description list may also associate coastal station abbreviations with definitions or measured parameter names with values and units; if used in a scientific interface, accuracy and provenance remain separate obligations.
+
+Review British English pronunciation, debugging checks and 24 unanswered practice questions in [Workshop 08 REVIEW](./workshops/build-a-list-of-major-web-browsers/REVIEW.md).
 
 ---
 
