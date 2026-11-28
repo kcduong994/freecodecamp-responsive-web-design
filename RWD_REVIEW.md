@@ -1,6 +1,6 @@
 # Responsive Web Design — Cumulative Conceptual Review
 
-> **Status:** In progress — Workshops 01–08 and Labs 01–06 documented.
+> **Status:** In progress — Workshops 01–09 and Labs 01–06 documented.
 > **Curriculum:** freeCodeCamp Responsive Web Design V9.
 > **Final course review:** Not yet complete; future subjects remain a roadmap, not completed practice.
 
@@ -37,10 +37,11 @@ For every concept, ask:
 | 12 | Iframe video embedding: browsing contexts, `/embed/` URLs, permission policy, referrer policy, fullscreen | Practised / explained | [Workshop 07](./workshops/build-a-video-display-using-iframe/), **7/7 steps** |
 | 13 | Video compilation: direct child relationships, three ordered `h2` → `p` → `iframe` sections, iframe titles and embed URLs | Practised / explained | [Lab 06](./labs/build-a-video-compilation-page/), completion marker; archived HTML reconstructed |
 | 14 | Description lists: `dl`, `dt`, `dd`, paired term/description semantics and browser defaults | Practiced / explained | [Workshop 08](./workshops/build-a-list-of-major-web-browsers/), **7/7 steps (100%)** |
-| 15 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
-| 16 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
-| 17 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
-| 18 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
+| 15 | Semantic quotations: `q`, `blockquote`, `cite` attribute vs element, section hierarchy | Practiced / explained | [Workshop 09](./workshops/build-quincys-job-tips-page/), learner-reported complete |
+| 16 | Deeper accessibility, tables and forms | Planned | Future curriculum work |
+| 17 | CSS foundations, selectors, cascade and box model | Planned | Future curriculum work |
+| 18 | Flexbox, Grid, positioning and responsive behavior | Planned | Future curriculum work |
+| 19 | Certification projects and cross-browser/accessibility reviews | Planned | Future curriculum work |
 
 ---
 
@@ -713,6 +714,35 @@ The page contains a single `dl`, holding five ordered term-and-description pairs
 **Engineering transfer:** A description list may also associate coastal station abbreviations with definitions or measured parameter names with values and units; if used in a scientific interface, accuracy and provenance remain separate obligations.
 
 Review British English pronunciation, debugging checks and 24 unanswered practice questions in [Workshop 08 REVIEW](./workshops/build-a-list-of-major-web-browsers/REVIEW.md).
+
+---
+
+## Part 15 — Quincy’s Job Tips: semantic quotations and citations
+
+**Evidence:** The learner supplied a complete final HTML document for [Workshop 09 — Build Quincy's Job Tips Page](./workshops/build-quincys-job-tips-page/) and reported completing the exercise. No final checker screenshot, exact step count or independent browser audit is available for this archive.
+
+### Inline and block quotations
+
+The document uses one `q[cite]` for a short quotation inside an introductory paragraph and three `blockquote[cite]` elements for extended quotations. One block quote contains plain text, while the other two contain several paragraph children. Browser quotation marks and block indentation are default presentation details, not guarantees that a source is accurate.
+
+### Work titles versus attribution metadata
+
+`cite="https://..."` on a `q` or `blockquote` is a source URL **attribute**; it does not display a clickable link by itself. The `<cite>` **element** around the work title in the first section marks the title of a creative work. The author name and `&mdash;` punctuation in the attribution paragraph are separate content. The wording of the quoted material and permission to reproduce it have not been independently verified against the published source.
+
+### Document hierarchy
+
+The `body` contains the learner's `h1`, introductory `p`, and `main`, in that order. Three titled `section` elements appear inside `main`. Moving the heading and introduction inside `main` might improve landmark completeness in a later revision, but the supplied final source is archived unchanged rather than silently edited to fit an extension.
+
+### Review prompts (unanswered)
+
+70. When is `q` preferable to `blockquote`?
+71. Why does a `cite` attribute not automatically render a hyperlink?
+72. Which content belongs inside a `<cite>` element: a person's name or the title of a work?
+73. Why might adding literal quotation marks around `<q>` create duplicated punctuation?
+74. How does a quoted `blockquote` containing four `p` elements differ from four separate quotations?
+75. What can a freeCodeCamp code check prove about HTML structure, and what can it not prove about quotation accuracy, accessibility or copyright?
+
+For detailed British English IPA, debugging examples and 20 independent self-assessment questions, see [Workshop 09 REVIEW](./workshops/build-quincys-job-tips-page/REVIEW.md).
 
 ---
 
